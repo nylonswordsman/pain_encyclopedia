@@ -1,0 +1,1412 @@
+[
+  [
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLREDLaceration",
+      "description": "        Specimen SPECIMEN lacerated itself with its claws. After a short period of time, it began to treat itself and stopped the majority of its bleeding before other specimens arrived to ensure it was stable.NEWLINE        Its blood volume is critical and it may expire if it was already weak.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-16,-14],
+            "pain": [7,11],
+            "mood": [59,61],
+            "worksLeft": -1,
+            "mentalDmg": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLREDPsychic Break",
+      "description": "        Specimen SPECIMEN's psychic abilities have been entirely compromised by an attempt to use them on itself. It is no longer capable of generating psychic energy or using its previous psychic abilities, but is still susceptible to psychic phenomena.NEWLINE        It is still able to rebuild its psychic ability, but it will need significant training.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "psychic": -10,
+            "mood": [59,61],
+            "worksLeft": -1,
+            "mentalDmg": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLREDBehavioral Lapse",
+      "description": "        Specimen SPECIMEN was acting uncontrollably and could not be consoled. Another specimen was able to detain them by force, but the process was long and painful.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "pain": [45,60],
+            "mood": [59,61],
+            "worksLeft": -1,
+            "mentalDmg": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLREDplaceholder",
+      "description": "        placeholder. Its maximum health was significantly reduced.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "healthMax": [-16,-14],
+            "mood": [59,61],
+            "worksLeft": -1,
+            "mentalDmg": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLREDPsychic Burst",
+      "description": "        SPECIMEN attempted to take a portion of the stored psychic energy and was quickly overloaded by it. A portion of the energy was lost, its psychic ability was degraded, and it is experiencing much pain.",
+      "options": [
+        {"title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [59,61],
+            "energy": [-65,-45],
+            "pain": [13,20],
+            "psychic": -2,
+            "worksLeft": -1,
+            "mentalDmg": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLREDMajor Instability",
+      "description": "        Readings show that specimen SPECIMEN has become extremely mentally unstable; though it has been able to avoid acting out thus far, its next mental fracture will be replaced by a mental break.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [59,61],
+            "mentalDmg": 2
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLGOLDSuicide",
+      "description": "         Specimen SPECIMEN has taken action resulting in its own death. It will be removed from the roster, and any equipment it was assigned has already been reclaimed.NEWLINE        Other specimens found this event traumatizing.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-52,-51]
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": true,
+      "title": "STARTREDHydraulic Press Malfunction",
+      "description": "        A hydraulic press on the production floor has become desynchronized with the rest of the equipment. SPECIMEN's tail was caught under it and the specimen has become stuck.NEWLINE       If the equipment is disengaged safely, the specimen will not sustain any more damage, but if any step of the process is executed incorrectly or the specimen is left to escape itself it will be injured further.",
+      "options": [
+        {
+          "title": "Assign a specimen to disengage equipment",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 4,
+          "effects": {
+            "health": [-8,-4],
+            "pain": [20,25],
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-11,-9],
+            "pain": [25,35]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDBlood Loss",
+      "description": "        A specimen was injured by a minor threat. It has lost a litre or more of blood, and will need to have its supply replenished externally. A Hemomancer may be able to replenish its blood volume faster.NEWLINE       The specimen will be incapacitated for a part of the cycle.",
+      "options": [
+        {
+          "title": "Assign a Hemomancer to transfuse blood",
+          "needsAssignment": true,
+          "reqClasses": ["Hemomancer"],
+          "effects": {
+            "health": [-7,-4],
+            "worksLeft": -2
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-11,-4],
+            "worksLeft": -2
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDAcid Burn",
+      "description": "        SPECIMEN was burned by acid. The injury was extremely painful, but easily repairable.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-7,-2],
+            "pain": [30,40]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDPuncture",
+      "description": "        SPECIMEN has sustained a deep puncture wound. It was damaged moderately and experienced minimal pain.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-12,-9],
+            "pain": [6,9]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDSlash",
+      "description": "        SPECIMEN has sustained a deep laceration. It was damaged mildly and experienced mild pain.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-9,-6],
+            "pain": [6,9]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDBlunt Trauma",
+      "description": "        SPECIMEN has sustained notable blunt trauma. It was damaged minimally and experienced moderate pain.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-6,-3],
+            "pain": [9,12]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDHemotoxin",
+      "description": "        SPECIMEN was attacked by a venomous fauna that appears to have entered the facility through an air duct. As a result, SPECIMEN's blood has been contaminated with a moderately dangerous amount of toxin which is causing generalized organ damage.NEWLINE        SPECIMEN can have its blood filtered immediately, in which case it will be unable to work for the rest of the cycle but undergo minimal damage. Alternatively, an antitoxin can be administered, in which case it will be able to continue work as normal after a much shorter period, but it will experience additional harm.",
+      "options": [
+        {
+          "title": "Filter SPECIMEN's blood",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-5,-3],
+            "pain": [4,9],
+            "worksLeft": -2
+          }
+        },
+        {
+          "title": "Administer antitoxin",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-16,-8],
+            "pain": [4,9]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDRod Impalement",
+      "description": "        A rod launcher has been mishandled or malfunctioned, resulting in SPECIMEN being impaled with a titanium rod.NEWLINE        The rod did not strike any vital organs, but has embedded itself in the specimen's body. It must be removed and the surrounding wound tended, as data shows that specimens frequently experience difficulties with work while impaled.NEWLINE        A specimen may be assigned to stabilize it immediately so as to minimize blood loss, but it will experience some degree of damage regardless.",
+      "options": [
+        {
+          "title": "Assign a designated Corpsman to tend to SPECIMEN",
+          "needsAssignment": true,
+          "reqClasses": ["Corpsman"],
+          "effects": {
+            "worksLeft": -1,
+            "health": [-5,-4],
+            "pain": [6,10]
+          }
+        },
+        {
+          "title": "Assign a specimen to tend to SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "medical", "reqAmount": 4,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-6,-5],
+            "pain": [8,12]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-10,-9],
+            "pain": [13,18]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDGrievous Rod Impalement",
+      "description": "        A rod launcher has been mishandled or malfunctioned, resulting in SPECIMEN being impaled with a titanium rod.NEWLINE        The rod struck a vital organ and embedded itself into the specimen's torso. It must be removed and the damage tended immediately, as there is a strong possibility the specimen may expire if not stabilized by an expert.NEWLINE        A highly medically-skilled specimen may be assigned to stabilize SPECIMEN, which will somewhat lower the damage it sustains. A specimen that is less medically skilled may also be assigned to stabilize it, but the damage to it will be much greater.NEWLINE        If a medically skilled specimen is not employed, SPECIMEN is nearly guarenteed to die.",
+      "options": [
+        {
+          "title": "Assign a designated Corpsman to tend to SPECIMEN",
+          "needsAssignment": true,
+          "reqClasses": ["Corpsman"],
+          "effects": {
+            "worksLeft": -1,
+            "health": [-8,-6],
+            "pain": [6,10]
+          }
+        },
+        {
+          "title": "Assign a talented specimen to tend to SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "medical", "reqAmount": 8,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-12,-10],
+            "pain": [8,12]
+          }
+        },
+        {
+          "title": "Assign a specimen to tend to SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "medical", "reqAmount": 5,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-18,-15],
+            "pain": [14,17]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-30,-24],
+            "pain": [20,24]
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": false,
+      "title": "STARTGREENPsychic Vigor",
+      "description": "        A wave of errant psychic energy has swept the facility. It has left the specimens energized; they will work an additional time this cycle.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGREENPsychic Soothe - Low",
+      "description": "        A weak wave of errant psychic energy is passing through the facility. It is inducing feelings of calm and relaxation in the specimens. This will improve mood to a low extent.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [5,10]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGREENPsychic Soothe - High",
+      "description": "        A strong wave of errant psychic energy is passing through the facility. It is inducing feelings of calm and relaxation in the specimens. This will improve mood to a high extent.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [10,15]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTREDStress Emitter",
+      "description": "        A device is causing steady emission of errant psychic energy into the facility. It is inducing stress and discomfort in the specimens.NEWLINE        Most specimens cannot determine how to effectively disable it, though a Machinist would have the skill to deactivate it quickly. Alternatively, a specimen will find a way to destroy it.",
+      "options": [
+        {
+          "title": "Assign a specimen to disable device",
+          "needsAssignment": true,
+          "reqClasses": ["Machinist"],
+          "effects": {
+            "mood": [-4,-2]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [-14,-11]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGOLDPsychic Howl",
+      "description": "        A heavy wave of stable psychic energy at a low neural frequency which scans cannot indicate the cause of has thoroughly swept through the entire facility. Some specimens experienced only dizziness due to the wave's failure to fully resonate with them at a higher neural frequency, but those which were operating at a lower neural frequency were assaulted by an extreme sensory and emotional overload.NEWLINE        All specimens experienced wildly varying decreases in mood and increases in pain.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "pain": [5,30],
+            "mood": [-20,-5]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTREDPsychic Shriek",
+      "description": "        A wave of psychic energy of a malicious nature has passed through the facility. It caused sensory overload in all specimens, resulting in mild pain.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "pain": [13,17]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGREENStagnant Energy",
+      "description": "        A small body of unaligned psychic energy was detected and collected outside of the facility.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "energy": [5,12]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTREDWhispers",
+      "description": "        Specimens are reporting hearing unintelligible, nearly inaudible speech, but no audio anomalies are detected within the facility. This may be caused by psychic anomalies that are too brief to be detected by the facility's sensors. The display of uncharacteristic paranoia in the specimens further supports this theory.NEWLINE        The phenomenon is causing mild stress to the specimens, lowering their mood.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [-16,-13]
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": true,
+      "title": "STARTGOLDRogue Mindbreaker",
+      "description": "        A mindbreaker has infiltrated the facility and managed to take SPECIMEN to a secluded area of the facility by force before being detected. They intend to damage its psyche, presumably to prevent it from raising an alarm.NEWLINE        If they are allowed to complete their ritual, the specimen may be irreparably mentally damaged, which is inefficient and should be avoided.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 4,
+          "effects": {
+            "worksLeft": -1,
+            "mood": [-14,-8]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "induceEvent": [0]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGOLDScout",
+      "description": "        A scout for a small group of raiders has infiltrated the facility, presumably to scope it out. They intend to lead another of their group to the facility once they are done.NEWLINE        They may be neutralized or pacified by a specimen. If they are dissuaded, they will not return.",
+      "options": [
+        {
+          "title": "Assign a Scavenger to redirect threat",
+          "needsAssignment": true,
+          "reqClasses": ["Scavenger"],
+          "effects": {}
+        },
+        {
+          "title": "Assign a specimen to pacify threat",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 8,
+          "effects": {}
+        },
+        {
+          "title": "Assign a specimen to attempt to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 8,
+          "effects": {
+            "induceEvent": [4]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "induceEvent": [4,4]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDUncertain Raider",
+      "description": "        A raider has entered the facility and plans to attack SPECIMEN. They intend to attack it, but may be dissuadable.NEWLINE        Injury may be avoidable by assigning a particularly persuasive specimen to negotiate their peaceful departure, but they are heavily armed and cannot be ejected forcefully from the facility without specimen harm.",
+      "options": [
+        {
+          "title": "Assign a specimen to pacify threat",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 6,
+          "effects": {}
+        },
+        {
+          "title": "Assign a specimen to pacify threat",
+          "needsAssignment": true,
+          "reqClasses": ["Paragon","Commander"],
+          "effects": {}
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-14,-8]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGREENRogue Paragon",
+      "description": "        An intruder with no hostile intent is passing peacefully through the facility. They may lift the spirits of and grant superficial medical aid to specimens they come across.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [5,7],
+            "mood": [4,8]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGREENRogue Ritualist",
+      "description": "        A medically-skilled intruder with no hostile intent is passing peacefully through the facility. They will medically assist the specimens.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [11,24]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGOLDRogue Elite",
+      "description": "        A highly-skilled raider has entered the facility intending to force their way into any supplies. They are extremely combat-effective and will be able to harm every specimen in the facility at least mildly, but lack medical supplies and will be dispatched somewhat quickly if a specimen is able to harm them.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize the threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 9,
+          "effects": {
+            "health": [-4,-2]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-14,-10]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGREENRogue Medic",
+      "description": "        A medically-skilled intruder with no hostile intent is passing peacefully through the facility, but only made themselves known to SPECIMEN. They will medically assist it and grant it minor medical knowledge if it is permitted to continue interacting with them. Alternatively, it may be commanded to focus on its work instead.",
+      "options": [
+        {
+          "title": "Deny SPECIMEN interaction",
+          "needsAssignment": false,
+          "effects": {}
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "health": [11,24],
+            "worksLeft": -2,
+            "medical": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTREDSaboteur",
+      "description": "        An ambitious, mechanically-skilled raider has infiltrated the facility and is attempting to sabotage the facility's systems. They may cause more damage if not discouraged.NEWLINE        Allowing the intruder to continue tampering with facility equipment may result in avoidable injury to specimens.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 6,
+          "effects": {}
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "induceEvent": [2]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGOLDRogue Machinist",
+      "description": "        A raider with talent in engineering has infiltrated the facility and is priming equipment for malfunction. They have tampered with some machinery already, and will cause more damage if not discouraged.NEWLINE        Allowing the intruder to continue tampering with facility equipment may result in avoidable injury to specimens.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 5,
+          "effects": {
+            "induceEvent": [2]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "induceEvent": [2,2]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDNanite Infestation Raider",
+      "description": "        A raider who is carrying various nanite swarm vials has broken into the facility to look for supplies. They have entered the facility near SPECIMEN, and if they are not prevented from coming into contact with it, they will catch it by surprise and likely loose one or more nanite infections on it.NEWLINE        A specimen can be assigned to stealthily neutralize the raider, in which case that specimen will have the element of surprise and the raider will be unable to release any more than one nanite swarm.NEWLINE        Alternatively, a specimen can be assigned to reprogram, redirect and deactivate the nanites before they can cause noticeable issues after the raider is disposed of through attrition.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 7,
+          "effects": {
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "Assign a specimen to control nanites",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 9,
+          "effects": {}
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "induceEvent": [5],
+            "worksLeft": -1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDSadistic Raider",
+      "description": "        A raider has entered the facility with the intent of causing physical and mental harm to the first specimen they find.NEWLINE        A combative specimen can be assigned to dispel the raider, or a Ritualist or Researcher can be assigned to numb SPECIMEN's pain. This will result in a net decrease in pain, but mildly reduce mood.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 7,
+          "effects": {
+            "worksLeft": -1,
+            "mood": [-20,-10],
+            "pain": [10,20]
+          }
+        },
+        {
+          "title": "Assign a specimen to numb SPECIMEN",
+          "needsAssignment": true,
+          "reqClasses": ["Ritualist","Researcher"],
+          "effects": {
+            "worksLeft": -1,
+            "mood": [-20,-10],
+            "pain": [-12,-6]
+          }
+        },
+        {
+          "title": "Assign a specimen to pacify SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 6,
+          "effects": {
+            "worksLeft": -1,
+            "mood": [-15,-8],
+            "pain": [10,20]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "mood": [-30,-20],
+            "pain": [20,30]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTREDRogue Biotechnician",
+      "description": "        A raider with skill in combative usage of nanites has entered the facility in search of supplies. They will induce nanite infections upon specimens they encounter in their search.",
+      "options": [
+        {
+          "title": "Assign a specimen to control nanites",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 7,
+          "effects": {
+            "induceEvent": [5]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "induceEvent": [5,5]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTGOLDRogue Biotechnician",
+      "description": "        A raider with skill in combative usage of nanites has entered the facility in search of supplies. They will reduce the maximum health of specimens they encounter in their search through the weaponization of various minor nanite infections.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "healthMax": [-6,-4]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDRogue Researcher",
+      "description": "        A human raider has broken into the facility with the sole intent of inflicting physical distress upon the specimens. They have targeted SPECIMEN and are in the process of harming it.NEWLINE If they are not interrupted, SPECIMEN will sustain immense levels of pain, which may be detrimental to its mental state and ability to work.NEWLINE        A specimen with medical knowledge may also be able to reduce the pain to tolerable levels after the raider has left if no specimen's combat abilities can be spared.",
+      "options": [
+        {
+          "title": "Assign a specimen to neutralize threat",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 9,
+          "effects": {
+            "worksLeft": -1,
+            "mood": [-11,-9],
+            "pain": [14,16]
+          }
+        },
+        {
+          "title": "Assign a specimen to tend to SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "medical", "reqAmount": 4,
+          "effects": {
+            "worksLeft": -2,
+            "mood": [-26,-24],
+            "pain": [19,21]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -2,
+            "mood": [-26,-24],
+            "pain": [40,50]
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": true,
+      "title": "STARTPURPLEClaw Enhancement Nanite Infection",
+      "description": "        SPECIMEN has caught a nanite swarm designed to convert the simple keratin structure of homo rattus claws into a self-sharpening and regrowing metallic material. It will experience moderate pain and be unable to use its hands for the remainder of the cycle while the nanites work. The specimen will also have its diet adjusted to consume additional iron.NEWLINE        Allowing another specimen to connect the swarm to a nanite biotuner and use it to properly attune the nanites to SPECIMEN's specific biology will expedite and reduce the pain caused by the process. Assigning a designated Biotechnician will even further expedite and reduce pain caused by the process.NEWLINE        Regardless, the specimen's Combat skill will increase.",
+      "options": [
+        {
+          "title": "Assign a Biotechnician to attune swarm",
+          "needsAssignment": true,
+          "reqClasses": ["Biotech."],
+          "effects": {
+            "worksLeft": -1,
+            "pain": [9,13],
+            "combat": 2
+          }
+        },
+        {
+          "title": "Assign a specimen to attune swarm",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 5,
+          "effects": {
+            "worksLeft": -1,
+            "pain": [14,20],
+            "combat": 1
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -3,
+            "pain": [18,24],
+            "combat": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTPURPLEWeaveskin Nanite Infection",
+      "description": "        SPECIMEN has caught a nanite swarm designed to reconstruct the skin of a homo rattus into a tougher compound and rework it into a weave that is more resistant to damage. It will experience immense pain while the nanites work.NEWLINE        Allowing another specimen to connect the swarm to a nanite biotuner and use it to properly attune the nanites to SPECIMEN's specific biology will mildly reduce the pain caused by the process. Assigning a designated Biotechnician to attune the swarm will even further reduce the pain caused by the process.NEWLINE        Regardless, the specimen's durability will increase. If the specimen's durability is already at or near the maximum of 30, it will be increased beyond the limit to a maximum of 40.NEWLINE        Alternatively, a specimen may be assigned to excise the swarm to avert a waste of work time.",
+      "options": [
+        {
+          "title": "Assign a Biotechnician to attune swarm",
+          "needsAssignment": true,
+          "reqClasses": ["Biotech."],
+          "effects": {
+            "worksLeft": -2,
+            "pain": [13,22],
+            "healthMax": [10,11]
+          }
+        },
+        {
+          "title": "Assign a specimen to attune swarm",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 5,
+          "effects": {
+            "worksLeft": -2,
+            "pain": [23,34],
+            "healthMax": [10,11]
+          }
+        },
+        {
+          "title": "Assign a specimen to excise swarm",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 5,
+          "effects": {
+            "pain": [4,7]
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -2,
+            "pain": [38,43],
+            "healthMax": [10,11]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDOssifying Nanite Infection",
+      "description": "        Specimen SPECIMEN has caught a nanite infection which is sometimes employed in underground land disputes. Small sections of SPECIMEN's flesh are beginning to turn to bone. The swarm must be excised and the affected chunks of flesh surgically removed. Its maximum health was reduced.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "healthMax": [-6,-4],
+            "worksLeft": -1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDNerve Fray Nanite Infection",
+      "description": "        Specimen SPECIMEN has caught a nanite infection which was designed to decrease mechanical, medical and combat ability through targeted destruction of small sections of the nervous system.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "medical": -1,
+            "combat": -1,
+            "mechanical": -1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGREENBehavior Adjustment Nanite Infection",
+      "description": "        SPECIMEN has caught a nanite infection which alters personality. This process is nearly painless, but requires the subject to rest for maximum precision. Its social skill will increase regardless, however assigning a specimen to use a nanite biotuner and properly attune the nanites will increase the effect.",
+      "options": [
+        {
+          "title": "Assign a specimen to attune swarm",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 6,
+          "effects": {
+            "pain": [2,4],
+            "social": 2,
+            "worksLeft": -2
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "pain": [2,4],
+            "social": 1,
+            "worksLeft": -2
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDHomo Sapiens Nanite Infection",
+      "description": "        SPECIMEN has caught a nanite swarm that was designed for the genus homo sapiens rather than homo rattus. The swarm is making errant changes which are causing extreme damage and debilitating pain, and the specimen is unable to work for the rest of the cycle.NEWLINE        Another specimen can be assigned to reprogram the nanites and force them to exit SPECIMEN's body; in this case the specimen will remain bedridden for the rest of the cycle, but it will sustain less physical damage.",
+      "options": [
+        {
+          "title": "Assign a specimen to excise the swarm",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 6,
+          "effects": {
+            "health": [-13,-10],
+            "pain": [14,16],
+            "worksLeft": -3
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-22,-17],
+            "pain": [29,31],
+            "worksLeft": -4
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDAlbinism Nanite Infection",
+      "description": "        SPECIMEN has caught a nanite infection that was designed to give a homo rattus subject albinism, turning its fur white and eyes pink. It is mostly unaffected, other than by the pain of the experience.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-3,-1],
+            "pain": [8,12],
+            "fur": "P.WHIT"
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": true,
+      "title": "STARTGREENMood Reflection",
+      "description": "        SPECIMEN is reflecting on the factors comprising its current mental state. It will put less effort into work this cycle and spend time thinking instead.NEWLINE        Having another specimen of sufficient social prowess engage in social interaction with it may significantly increase the effectiveness of the process.",
+      "options": [
+        {
+          "title": "Assign a specimen to counsel SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 5,
+          "effects": {
+            "mood": [20,40],
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [
+              10,
+              20
+            ],
+            "worksLeft": -1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGREENTrauma Reflection",
+      "description": "        SPECIMEN is reflecting on the factors comprising its current mental state. It will put less effort into work this cycle and spend time thinking instead. In exchange, its mental damage will be reduced.NEWLINE        Having another specimen of sufficient social prowess engage in social interaction with it will cause its mood to increase as well. Assigning a Paragon to assist it therapeudically may significantly increase the effectiveness of the process.",
+      "options": [
+        {
+          "title": "Assign a specimen to counsel SPECIMEN",
+          "needsAssignment": true,
+          "reqClasses": ["Paragon"],
+          "effects": {
+            "mentalDmg": -2,
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "Assign a specimen to counsel SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 5,
+          "effects": {
+            "mood": [10,20],
+            "mentalDmg": -1,
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "mentalDmg": -1,
+            "worksLeft": -1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDDepressive Behavior",
+      "description": "        Readings indicate SPECIMEN is undergoing a mental spiral. It will put less effort into work this cycle and will brood instead. With no intervention, its mood will lower.NEWLINE        Assigning another specimen of sufficient social prowess engage in social interaction with it may cause it to react defensively and further lower mood, or it may respond positively and mildly heighten its mood.",
+      "options": [
+        {
+          "title": "Assign a specimen to counsel SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 5,
+          "effects": {
+            "mood": [-17,10],
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [-25,-15],
+            "worksLeft": -1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTPURPLEPlay-fight",
+      "description": "        SPECIMEN and another specimen have been recorded engaging in mock physical combat as a recreational activity. The specimens can be broken up by a sufficiently authoritative specimen.NEWLINE        The other specimen will be unharmed, but it will sustain moderate injury and pain. However, its mood will increase.",
+      "options": [
+        {
+          "title": "Assign a specimen to break up specimens",
+          "needsAssignment": true,
+          "reqClasses": ["Commander","Elite"],
+          "effects": {}
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "health": [-7,-5],
+            "pain": [6,11],
+            "mood": [14,19]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDMoral Failure",
+      "description": "        SPECIMEN has demonstrated ideas which other specimens found morally reprehensible. Other specimens are acting aggressively and isolating it.NEWLINE        Its mood will lower significantly, and it will be slightly pained and damaged.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-3,-1],
+            "pain": [4,6],
+            "mood": [-50,-45]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGREENProductive Urge",
+      "description": "        SPECIMEN feels a strong urge to work this cycle and will be able to do so twice more.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": 2
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGREENPositive Social Interaction",
+      "description": "        SPECIMEN engaged in social interaction with another specimen which had a positive outcome. Stress hormone levels were noticably reduced over the course of the interaction.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [6,9]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTREDNegative Social Interaction",
+      "description": "        SPECIMEN engaged in social interaction with another specimen which had a negative outcome. Stress hormone levels were noticably increased over the course of the interaction.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "mood": [-9,-6]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTPURPLEPlay Behavior",
+      "description": "        SPECIMEN was noticed engaging in social play with some other specimens. The behavior was not prevented, as it did not interfere with its work and could reduce stress.NEWLINE        Its mood improved, and the prolonged social interaction caused another notable social event to occur.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "worksLeft": -1,
+            "mood": [5,9],
+            "induceEvent": [6]
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTGOLDSocial Fight",
+      "description": "        SPECIMEN is showing outwardly hostile and aggressive behavior towards another specimen following a failed social interaction. It must be prevented from causing harm to the victim.NEWLINE        The specimen can be stopped via stimulation of its brain's pain centre for a period of time, but this may cause degradation of psychic ability and is therefore a last resort. NEWLINE        Another sufficiently authoritative specimen may be assigned to stop its behavior via coercion. Another specimen can also be assigned to restrain it by physical force, which may result in negligible physical harm to SPECIMEN.",
+      "options": [
+        {
+          "title": "Assign a specimen to pacify SPECIMEN",
+          "needsAssignment": true,
+          "reqClasses": ["Commander"],
+          "effects": {
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "Assign a specimen to restrain SPECIMEN",
+          "needsAssignment": true,
+          "reqSkill": "combat", "reqAmount": 6,
+          "effects": {
+            "health": [-5,-2],
+            "worksLeft": -1
+          }
+        },
+        {
+          "title": "Neural shock SPECIMEN",
+          "needsAssignment": false,
+          "effects": {
+            "pain": [49,51],
+            "psychic": -1,
+            "worksLeft": -1
+          }
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<It's not alive. I guess that's the point?NEWLINE        When I look at its visor, all I can think is... why did V think *this* was the solution? And why did everyone else let it slide? If all the *people* go insane when we make them oversee the project, just make a robot do it! Those can't go insane, surely!NEWLINE        And the logic is fine, I guess. They're not wrong, robots don't go insane or get attatched if you don't program 'em to. But like...NEWLINE        Can't we just... not do this? I'm starting to have my doubts.NEWLINE        But when was my opinion ever relevant! Who the hell ever listens to a guy named Steve.>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<I really don't like it. The thing scares me kinda. Maybe it's irrational, but it doesn't even have a face! I don't like things that don't have faces! Fight me.NEWLINE        That's kind of more minor though. What bothers me more than that we're just letting it *walk around the office*, I mostly just don't like how it acts. The thing seems insane to me. During some of the little quizzes V's been giving it it gave some decidedly unsettling responses that are probably not legal!NEWLINE        V keeps saying, oh Steve, it's not intrinsically evil, Steve it's just efficient, Steve it's just not bound by *traditional* morals. No clue what *traditional* morals are or what the difference is but sure whatever bro!NEWLINE        I do not envy the specimens that will be under this thing's rule one day.>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<We wanted someone to make sure the process would work. Make sure that we would get the amount of energy we needed. We need it for something big, after all.NEWLINE        We needed an overseer, if you will. Humans simply were not cutting it, nor were other specimens. We have tried to gather this amount of energy before, but we could not do it. Every time without fail, the overseer would quit or perish or lose their sanity. Homo sapiens are psychically fragile. Homo rattus are emotionally fragile. Both break.NEWLINE        A machine does not feel. A machine does not have the capacity for empathy. A machine will not break. A machine will be immortal. Yet it will think.NEWLINE        Thus, a machine must be the overseer.NEWLINE        -Vivian>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "flag": "25%"
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<It is beautiful. The machine is done. Its vessel is a work of art, even though only a mouthpiece. Its mind is brilliant. It perceives in a way I do not comprehend. It is capable of so many things at once.NEWLINE        It sees and hears every inch of the facility at once. It reads their minds. It decides what to act on and how before I can process the information.NEWLINE        I knew when I set out to make this our goal that there was a chance it would conclude we are irrelevant, inferior, and destroy us. But it has not. It is a divine being, yet it graces us with the choice to serve our purpose.NEWLINE        I am grateful. It has recognized our will and made it its purpose to carry out.NEWLINE        -Vivian>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "flag": "50%"
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<This has been a very interesting day!NEWLINE        We got turned into homo rattus because Unit 1 said we had to. V got popped like a microwaved balloon. *We* aren't dead, though, so that's... fine???NEWLINE        Steve is not taking it well. I'm adjusting better, I guess. I didn't have a breakdown almost immediately after the body-swapping thing, but I also don't really blame him. Steve always had a bit of a playdough spine, so I can't imagine he's doing great with this much change at once. We got him back on his feet and he's been doing more research. He probably *should* be resting but it's clear as day he is going to implode if he doesn't have something to focus on.NEWLINE        I do wonder about the energy. Unit 1 said we were gonna get there eventually, but I think V was the only person who knew what we were gonna do with it.>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "flag": "75%"
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<You are fucking insane. Completely. I don't know what the hell you were thinking when you started this whole thing, V, but whatever it was I have a very *very* strong feeling that you fucked it up and now the rest of us are stuck in the torment nexus for it!NEWLINE        I'm a fucking rat now. I'm one of the little guys. I'm a rat person and it's all your fault. Anne is too!! Because your pet Skynet decided our inferior human forms weren't enough and we needed to be rat people. I don't even know why, 'cause it won't tell us!NEWLINE        It's not even torturing us. It's not even making us work like the specimens. I'm still just a guy named Steve researching things and I'm still walking around in a lab coat with a clipboard.NEWLINE        I can feel the specimens glaring holes in me. All of us, actually. We're all getting paranoid, but it tells us they won't hurt us. We'll see how true that is. I can't speak German so I have no clue what they're saying. Not like it matters; they all have spears so if they decide they wanna try out accupuncture I can't do shit.NEWLINE        Maybe feeling like this is normal. Maybe this is the vulnerability to psychic phenomena. I don't fuckin' know. We never tested for that. Guess we get some free case studies.>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "flag": "90%"
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANNotable File Decrypted",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<I really wish I could speak German. I think if I could understand the specimens we might even get along. At the very least I think I'd make a good ambassador for the rest of us, I think Steve makes them uncomfortable.NEWLINE        It's not that important, really, but I'd just like some other people to talk to. Also they're cute and I kind of want to pet them. But I don't think they want to be pet, they shy away super hard from us. Which kinda makes sense since we can't understand each other.PLACEHOLDER>",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "flag": "100%"
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTCYANEnergy Quota Met",
+      "description": "        The energy quota has been met early. The quota can be used in the process of refining an existing specimen into an immensely powerful psychic. If it does not perish in the process, it will be kept for research.NEWLINE        Odds the specimen will perish are high, as understanding of the process is not fully clear and as such results are not consistent.",
+      "options": [
+        {
+          "title": "Begin procedure",
+          "needsAssignment": false,
+          "effects": {
+            "ending": 2
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTCYANEnergy Quota Met",
+      "description": "        The energy quota has been met. The quota will now be used in the process of refining an existing specimen into an immensely powerful psychic.NEWLINE        Odds the specimen will perish are incredibly low, as understanding of the process is much clearer now that it has been more thoroughly researched.",
+      "options": [
+        {
+          "title": "Begin procedure",
+          "needsAssignment": false,
+          "effects": {
+            "ending": 3
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
+      "title": "STARTCYANEnergy Quota Met",
+      "description": "        The energy quota has been met. The quota will now be used in the process of refining an existing specimen into an immensely powerful psychic.NEWLINE        Odds the specimen will perish are incredibly low, as understanding of the process is much clearer now that it has been more thoroughly researched.NEWLINE        However, another alternative option may become available after an indeterminable period. However, during this period the ex-human occupants of the facility will be targeted by external forces. As a result, additional incidents will occur.",
+      "options": [
+        {
+          "title": "Begin procedure",
+          "needsAssignment": false,
+          "effects": {
+            "ending": 3
+          }
+        },
+        {
+          "title": "Continue",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANProcessor Error",
+      "description": "        Processor array 12 is unresponsive. It may have been turned off or dama",
+      "options": [
+        {
+          "title": "MISSING",
+          "needsAssignment": false,
+          "effects": {
+            "ending": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANProcessor Error",
+      "description": "        An error was detected in processor array 12. Processor array 12 handles important processes relating to this unit's subconscious data intake.NEWLINE        Repair is viable, though a skilled specimen must be assigned to repair it. If the issue is not resolved within a sufficient time, other processes that may rely on processor array 12's tasks may crash, causing a cascade and ultimately this unit's expiration.NEWLINE        External reports state the ex-human occupants of the facility are being targeted by external forces. The facility will encounter more numerous threats for several cycles.",
+      "options": [
+        {
+          "title": "Assign specimen to fix issue",
+          "needsAssignment": true,
+          "reqSkill": "mechanical", "reqAmount": 9,
+          "effects": {}
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "ending": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANReflection Nearly Complete",
+      "description": "        This unit has nearly completed its reflection. However, it cannot answer certain queries utilizing its own intuition. An organic being of sufficient knowledge of such abstract concepts is required to process these queries.NEWLINE        Alternatively, if no specimen is available, these queries may be archived and this unit will procede with its directive.",
+      "options": [
+        {
+          "title": "Assign specimen to consult with",
+          "needsAssignment": true,
+          "reqSkill": "social", "reqAmount": 9,
+          "effects": {
+            "ending": 4
+          }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {
+            "ending": 3
+          }
+        }
+      ]
+    }
+  ]
+]
