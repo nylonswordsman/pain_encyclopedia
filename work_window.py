@@ -260,7 +260,6 @@ def execute_store_energy(workerIndex):
     global currentSave
     s = currentSave["specimens"][workerIndex] ## 's' stands for specimen
     if s["class"] == "Mindbreaker": energyFlux = max((randint(1,2)+round(s["psychic"]*0.8)), randint(4,5))
-#    elif s["class"] == "Neurotech.": energyFlux = max((randint(1,2)+round(s["psychic"]*0.65)), randint(4,5))
     elif s["class"] == "Elite": energyFlux = max((randint(1,2)+round((s["psychic"]*0.6)*0.5)), randint(3,5))
     else: energyFlux = max((randint(1,2)+round(s["psychic"]*0.5)), randint(3,5))
     if s["class"] == "Mindbreaker":

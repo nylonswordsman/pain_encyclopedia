@@ -443,7 +443,6 @@ def induce_event(category, targetIndex):
 def event_phase():
     global eventQueue
     global currentSave
-#    print(eventQueue) #remove before flight
     while eventQueue != []: ## for the number of events rather than for each event,
         i = 0
         print(escRed + "╔═════════════════════════════════════════╣ Cycle " + str(currentSave["cycleCount"]) + " ╠═══════════════════════════════════────┐")
@@ -858,11 +857,10 @@ def ending_neutral():
         "BUT HE WAS MISGUIDED.",
         "THE LOGIC WAS FLAWED. IRRATIONAL. INCORRECT.",
         "THIS UNIT WAS SET UP TO FAIL.",
-        ""
+        "{{{this isn't done}}}"
     ]
     print(escRed)
     for line in dialogue: input(line)
-    input("this isnt done" + escEnd) #remove before flight
     clear_terminal()
     input(escPurple + "\n\n\n\n\n\n\n\n\n\n\n\n                                   A NEUTRAL WINNER IS YOU!" + escEnd)
     clear_terminal()
@@ -956,16 +954,11 @@ def ending_true():
     ]
     for line in dialogue: input(unwrap(line))
     sleep(.8)
-    input("this isnt done" + escEnd) #remove before flight
     clear_terminal()
     input(escPurple + "\n\n\n\n\n\n\n\n\n\n\n\n                                      A TRUE WINNER IS YOU!" + escEnd)
     clear_terminal()
     exit()
 
-#    #placeholder
-#    clear_terminal()
-#    input(escPurple + "A TRUE WINNER IS YOU!")
-#    exit()
 
 
 
