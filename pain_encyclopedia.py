@@ -312,16 +312,13 @@ def cycle():
         clear_lines(1)
         if s["mood"] < 20:
             print(escRed + "[" + s["ID"] + "] Mental status: " + escEnd + escHLRed + " WARNING " + escEnd + escRed)
-            if randint(1, 100) <= 80 and s["pain"] >= 85:
-                induce_event(0, cS["specimens"].index(s))
+            if randint(1, 100) <= 80 and s["pain"] <= 85: induce_event(0, cS["specimens"].index(s))
         elif s["mood"] < 40:
             print(escRed + "[" + s["ID"] + "] Mental status: " + escGold + "BAD" + escRed)
-            if randint(1, 100) <= 50 and s["pain"] >= 85:
-                induce_event(0, cS["specimens"].index(s))
+            if randint(1, 100) <= 50 and s["pain"] <= 85: induce_event(0, cS["specimens"].index(s))
         elif s["mood"] < 60:
             print(escRed + "[" + s["ID"] + "] Mental status: " + escRed + "POOR" + escRed)
-            if randint(1, 100) <= 20 and s["pain"] >= 85:
-                induce_event(0, cS["specimens"].index(s))
+            if randint(1, 100) <= 20 and s["pain"] <= 85: induce_event(0, cS["specimens"].index(s))
         elif s["mood"] < 80:
             print(escRed + "[" + s["ID"] + "] Mental status: " + escGreen + "OK" + escRed)
         elif s["mood"] <= 100:
@@ -355,7 +352,7 @@ def cycle():
         case "CRUEL":
             for i in range(int(floor(cS["cycleCount"]/7))): induce_event(None, None)        
     ## check what cycle it is; on some cycles there are scripted events. usually story stuff
-    ## also checks energy count for 
+    ## also checks energy count for scripted events that are based off energy collected
     match cS["cycleCount"]:
         case 0:
             ## replace entire event queue with cycle 0 story event and stop specimens from working; this is basically a cutscene
@@ -505,6 +502,7 @@ def cycle_end():
                     while s["worksLeft"] > 0:
                         s["pain"] = clamp(0, s["pain"]+randint(-7,-6), 100)
                         s["mood"] = clamp(0, s["mood"]+randint(6,7), 100)
+                        s["worksLeft"] += -1
             currentSave["cycleCount"] += 1
             cycle()
         else: raise ValueError
@@ -662,7 +660,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
             if resource in e: s[resource] = clamp(0, s[resource]+randint(e[resource][0], e[resource][1]), 100)
         if "healthMax" in e:
                 healthMaxFlux = randint(e["healthMax"][0], e["healthMax"][1])
-                s["healthMax"] = clamp(0, s["healthMax"]+healthMaxFlux, 40)
+                s["healthMax"] = clamp(1, s["healthMax"]+healthMaxFlux, 40)
                 s["health"] = clamp(0, s["health"], s["healthMax"])
         if "health" in e:
             if assignedSpecimen != "N/A":
@@ -710,7 +708,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
                 if resource in e: s[resource] = clamp(0, s[resource]+randint(e[resource][0], e[resource][1]), 100)
             if "healthMax" in e:
                 healthMaxFlux = randint(e["healthMax"][0], e["healthMax"][1])
-                s["healthMax"] = clamp(0, s["healthMax"]+healthMaxFlux, 40)
+                s["healthMax"] = clamp(1, s["healthMax"]+healthMaxFlux, 40)
                 s["health"] = clamp(0, s["health"], s["healthMax"])
             if "health" in e:
                 healthFlux = randint(e["health"][0], e["health"][1])
@@ -974,7 +972,7 @@ def ending_true():
 main()
 
 ## KNOWN ISSUES:
-## * i think if you have no specimens able to do an option and you start to assign for it anyway it'll softlock you but i havent tested it
+## * if you have no specimens able to do an option and you start to assign for it anyway it'll softlock you
 ## * there's nothing actually stopping you from assigning a specimen that isn't the correct class to an option that needs a specific class
 ## * there's nothing actually stopping you from having a specimen unable to train a skill train it
 ## * work window softlocks you if you start to assign for a work type when no one can work. solved by closing the work window
@@ -986,5 +984,4 @@ main()
 ## * visual energy progress bar at cycle start
 ## * make it so secondary classes can match EITHER the weight or alignment but not both instead of being completely random
 ## * note events that explain the psychic energy types and also maybe some of the classes
-## * specimens are incapable of working using skills they have 0 in (except social for resting)
-## * events that use energy property
+## * more events that use energy property

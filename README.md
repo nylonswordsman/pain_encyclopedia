@@ -50,10 +50,10 @@ Most classes have a fun little perk they grant the specimen when it is the prima
 * Corpsman: Heals specimens targeted by damaging events if they are the one assigned. Heal takes place before damage is inflicted; less helpful when the target is near full health, but more likely to prevent a casualty when they're low.
 * Mindbreaker: Stores much more psychic energy at once, but builds pain and damage to do it.
 * Hemomancer: Working title. Injures themselves to doctor others more effectively.
-* Researcher: Reduces own pain and increases own mood according to work left at the end of the cycle (LIE it does not do that, i didnt implement it yet)
+* Researcher: Reduces own pain and increases own mood according to work left at the end of the cycle.
 * Ritualist: Stores a bit of energy at the end of each cycle.
 * Biotechnician: Capable of increasing specimens' max health up to 40 rather than 30 when refining.
-* Scavenger: Slightly restores own health at the end of each cycle.
+* Scavenger: Slightly restores own health at the end of each cycle. Does not lose additional mood from being under 50% health.
 
 
 
