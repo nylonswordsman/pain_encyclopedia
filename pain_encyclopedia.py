@@ -93,12 +93,14 @@ def main_menu():
     global eventPool
     eventPool = load(open("events.json", "r")) ## load event pool
     ## check whether or not the save file exists
-    if path.exists("./memnode.json") == True:
+    if path.exists("./memnode.json"):
         ## if it does exist and program picks it up, yay. move on
         print(escRed + "[HNos] Welcome Unit 1.\n[HNos] Memory node found. Please commence memory synchronization.\n[HNos] To abandon this memory node, please manually remove it and restart.")
         input(escGrey + "[Press enter to continue...]" + escRed)
         clear_lines(1)
         currentSave = dict(load(open("./memnode.json"))) ## load the save
+        if path.exists("./temp.json"): pass
+        else: open("temp.json", "x")
         dump(currentSave, open("temp.json", "w"))
     else: ## if the save file does not exist, make one
         print(escRed + "[HNos] Welcome Unit 1.\n[HNos] Memory node not found. Please pull specimens from cryptosleep and create a memory node.")
@@ -292,8 +294,8 @@ def cycle():
             print(escRed + "[" + s["ID"] + "] Physical status: " + escGrey + "DECEASED" + escRed)
             cS["specimens"].remove(s)
         elif s["health"] < round(s["healthMax"]*0.20): print("[" + s["ID"] + "] Physical status: " + escEnd + escHLRed + " WARNING " + escEnd + escRed)
-        elif s["health"] < round(s["healthMax"]*0.40): print("[" + s["ID"] + "] Physical status: " + escGold + "BAD" + escRed)
-        elif s["health"] < round(s["healthMax"]*0.60): print("[" + s["ID"] + "] Physical status: " + escRed + "POOR" + escRed)
+        elif s["health"] < round(s["healthMax"]*0.40): print("[" + s["ID"] + "] Physical status: " + escRed + "BAD" + escRed)
+        elif s["health"] < round(s["healthMax"]*0.60): print("[" + s["ID"] + "] Physical status: " + escGold + "POOR" + escRed)
         elif s["health"] < round(s["healthMax"]*0.80): print("[" + s["ID"] + "] Physical status: " + escGreen + "OK" + escRed)
         elif s["health"] <= round(s["healthMax"]*1.00):
             print("[" + s["ID"] + "] Physical status: " + escGreen + "GOOD" + escRed)
@@ -314,10 +316,10 @@ def cycle():
             print(escRed + "[" + s["ID"] + "] Mental status: " + escEnd + escHLRed + " WARNING " + escEnd + escRed)
             if randint(1, 100) <= 80 and s["pain"] <= 85: induce_event(0, cS["specimens"].index(s))
         elif s["mood"] < 40:
-            print(escRed + "[" + s["ID"] + "] Mental status: " + escGold + "BAD" + escRed)
+            print(escRed + "[" + s["ID"] + "] Mental status: " + escRed + "BAD" + escRed)
             if randint(1, 100) <= 50 and s["pain"] <= 85: induce_event(0, cS["specimens"].index(s))
         elif s["mood"] < 60:
-            print(escRed + "[" + s["ID"] + "] Mental status: " + escRed + "POOR" + escRed)
+            print(escRed + "[" + s["ID"] + "] Mental status: " + escGold + "POOR" + escRed)
             if randint(1, 100) <= 20 and s["pain"] <= 85: induce_event(0, cS["specimens"].index(s))
         elif s["mood"] < 80:
             print(escRed + "[" + s["ID"] + "] Mental status: " + escGreen + "OK" + escRed)
@@ -524,7 +526,7 @@ def address_event(eventIndex):
     choices = []
     print("      > 0.  (Observe status of specimens)")
     for option in queuedEvent["options"]:
-        if option["needsAssignment"] == True and "reqSkill" in option and "reqAmount" in option:
+        if option["needsAssignment"] and "reqSkill" in option and "reqAmount" in option:
             requiredSkill = option["reqSkill"]
             requiredAmount = option["reqAmount"]
             validSpecimenPresent = False
@@ -532,16 +534,16 @@ def address_event(eventIndex):
                 if (s[requiredSkill] >= option["reqAmount"]) and (s["worksLeft"] > 0):
                     validSpecimenPresent = True
                     break
-            if validSpecimenPresent == True: print("      > " + str(i+1) + ".  " + option["title"] + " (Assign " + str(option["reqSkill"]).title() + " " + str(option["reqAmount"]) + ")")
+            if validSpecimenPresent: print("      > " + str(i+1) + ".  " + option["title"] + " (Assign " + str(option["reqSkill"]).title() + " " + str(option["reqAmount"]) + ")")
             else: print(escGrey + "      > X.  " + option["title"] + " (Invalid: No valid specimen available)" + escRed)
-        elif option["needsAssignment"] == True and "reqClasses" in option:
+        elif option["needsAssignment"] and "reqClasses" in option:
             requiredClasses = option["reqClasses"]
             validSpecimenPresent = False
             for s in currentSave["specimens"]:
                 if (s["class"] in requiredClasses or s["secondaryClass"] in requiredClasses) and (s["worksLeft"] > 0):
                     validSpecimenPresent = True
                     break
-            if validSpecimenPresent == True:
+            if validSpecimenPresent:
                 print("      > " + str(i+1) + ".  " + option["title"] + " (Assign ", end="")
                 if len(requiredClasses) == 1: print(requiredClasses[0], end="")
                 else:
@@ -570,7 +572,7 @@ def choose_option(actions, thisEvent):
         elif choice < 0: clear_lines(1), choose_option(actions, thisEvent)
         else:
             clear_lines(0)
-            if actions[choice-1]["needsAssignment"] == True: assign_for_option(actions[choice-1], thisEvent)
+            if actions[choice-1]["needsAssignment"]: assign_for_option(actions[choice-1], thisEvent)
             else: resolve_option(actions[choice-1], thisEvent, "N/A")
     except ValueError, TypeError, IndexError:
         clear_lines(1), choose_option(actions, thisEvent)
@@ -672,7 +674,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
         for info in ["fur", "sex"]:
             if info in e: s[info] = e[info]
         for flatNum in ["combat", "medical", "social", "mechanical", "psychic", "mentalDmg", "worksLeft"]:
-            if flatNum in e: s[flatNum] = clamp(0, s[flatNum]+e[flatNum], 9)
+            if flatNum in e and s["pain"] < 85: s[flatNum] = clamp(0, s[flatNum]+e[flatNum], 9)
         if "energy" in e:
             energyFlux = randint(e["energy"][0], e["energy"][1])
             saveChanges["currentEnergy"] = clamp(0, saveChanges["currentEnergy"]+energyFlux, saveChanges["energyGoal"])
@@ -716,7 +718,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
             for info in ["fur", "sex"]:
                 if info in e: s[info] = e[info]
             for flatNum in ["combat", "medical", "social", "mechanical", "psychic", "mentalDmg", "worksLeft"]:
-                if flatNum in e: s[flatNum] = clamp(0, s[flatNum]+e[flatNum], 9)
+                if flatNum in e and s["pain"] < 85: s[flatNum] = clamp(0, s[flatNum]+e[flatNum], 9)
             if "energy" in e:
                 energyFlux = randint(e["energy"][0], e["energy"][1])
                 saveChanges["energyCurrent"] = clamp(0, saveChanges["energyCurrent"]+energyFlux, saveChanges["energyGoal"])
