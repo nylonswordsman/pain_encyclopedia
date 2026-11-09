@@ -980,3 +980,4 @@ main()
 ## * make it so secondary classes can match EITHER the weight or alignment but not both instead of being completely random
 ## * note events that explain the psychic energy types and also maybe some of the classes
 ## * more events that use energy property
+## * more messages in work window pertaining to class gimmicks

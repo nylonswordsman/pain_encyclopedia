@@ -67,11 +67,14 @@ def display_workers(workType):
         case 5: skill = "mechanical"
     for s in currentSave["specimens"]:
         if s["worksLeft"] < workCost: print(escGrey + "[X]" + ". " + s["ID"] + "/" + s["name"] + "  (Invalid: Unable to work)" + escRed)
-        else:
-            if skill == "N/A": print(escRed + "[" + str(int(i+1)) + "]. " + s["ID"] + "/" + s["name"] + escRed)
-            else:
-                if s[skill] == 0 and skill != "social": print(escGrey + "[X]" + ". " + s["ID"] + "/" + s["name"] + "  (Invalid: Incapable of that)" + escRed)
-                else: print(escRed + "[" + str(int(i+1)) + "]. " + s["ID"] + "/" + s["name"] + " (Relevant skill: " + str(s[skill]) + ")" + escRed)
+        elif s["health"] <= 0: print(escGrey + "[X]" + ". " + s["ID"] + "/" + s["name"] + "  (Invalid: Critical condition)" + escRed)
+        elif skill == "N/A": print(escRed + "[" + str(int(i+1)) + "]. " + s["ID"] + "/" + s["name"] + escRed)
+        elif s[skill] == 0 and skill != "social": print(escGrey + "[X]" + ". " + s["ID"] + "/" + s["name"] + "  (Invalid: Incapable of that)" + escRed)
+        elif s["class"] == "Mindbreaker" and skill == "psychic" and s["health"] <= max(round(s["healthMax"]*0.1), 3): print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]}{escGold} (WARN: Unsafe operation. Skill: {str(s[skill])}){escRed}")
+        elif s["class"] == "Mindbreaker" and skill == "psychic": print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]}{escRed} (Operates beyond safety limits. Skill: {str(s[skill])}){escRed}")
+        elif s["class"] == "Hemomancer" and skill == "medical" and s["health"] <= max(round(s["healthMax"]*0.25), 4): print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]}{escGold} (WARN: Unsafe operation. Skill: {str(s[skill])}){escRed}")
+        elif s["class"] == "Hemomancer" and skill == "medical": print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]}{escRed} (Operates beyond safety limits. Skill: {str(s[skill])}){escRed}")
+        else: print(escRed + "[" + str(int(i+1)) + "]. " + s["ID"] + "/" + s["name"] + " (Relevant skill: " + str(s[skill]) + ")" + escRed)
         i += 1
     print("          [Choose a specimen to work...]")
     choose_worker(workType, workCost, skill)
@@ -249,7 +252,13 @@ def execute_doctor(workerIndex, targetIndex):
     ## the actual heal
     p["health"] = clamp(0, p["health"]+healthFlux, p["healthMax"])
     ## assigning an additional effect according to class, if the specimen is one of the classes that has those
-    if d["class"] == "Hemomancer": d["health"] = clamp(0, d["health"]+min(round(d["healthMax"]*-0.25), -4), d["healthMax"])
+    if d["class"] == "Hemomancer":
+        print(f"{escRed}[{d["ID"]}] Operating beyond safety limits.")
+        sleep(.3)
+        d["health"] = clamp(0, d["health"]+min(round(d["healthMax"]*-0.25), -4), d["healthMax"])
+        if d["health"] <= 0: 
+            print(f"{escRed}[{d["ID"]}] {escGold}WARN: Physical status compromised. Medical attention necessary.{escRed}")
+            sleep(.3)
     elif d["class"] == "Paragon":
         d["mood"] = clamp(0, d["mood"]+randint(2, 3), 100)
         p["mood"] = clamp(0, p["mood"]+randint(3, 4), 100)
@@ -259,14 +268,20 @@ def execute_doctor(workerIndex, targetIndex):
 def execute_store_energy(workerIndex):
     global currentSave
     s = currentSave["specimens"][workerIndex] ## 's' stands for specimen
-    if s["class"] == "Mindbreaker": energyFlux = max((randint(1,2)+round(s["psychic"]*0.8)), randint(4,5))
-    elif s["class"] == "Elite": energyFlux = max((randint(1,2)+round((s["psychic"]*0.6)*0.5)), randint(3,5))
-    else: energyFlux = max((randint(1,2)+round(s["psychic"]*0.5)), randint(3,5))
+    if s["class"] == "Mindbreaker": energyFlux = max((randint(1,2)+round(s["psychic"]*0.75)), randint(4,5))
+    elif s["class"] == "Elite": energyFlux = max((randint(1,2)+round((s["psychic"]*0.55)*0.5)), randint(2,3))
+    else: energyFlux = max((randint(1,2)+round(s["psychic"]*0.45)), randint(2,3))
     if s["class"] == "Mindbreaker":
+        print(f"{escRed}[{s["ID"]}] Operating beyond safety limits.")
+        sleep(.3)
         healthFlux = min(round(s["healthMax"]*-0.1), randint(-3, -2))
-        if s["health"] + healthFlux <= 0: s["mentalDmg"] = clamp(0, s["mentalDmg"]+1, 3)
+        if s["health"] + healthFlux <= 0:
+            s["mentalDmg"] = clamp(0, s["mentalDmg"]+1, 3)
+            print(f"{escRed}[{s["ID"]}] {escGold}WARN: Mental state damaged.{escRed}")
+            sleep(.3)
         else: s["health"] = clamp(0, s["health"]+healthFlux, s["healthMax"])
         s["pain"] = clamp(0, s["pain"]+round(s["psychic"]*0.4), 100)
+
     currentSave["energyCurrent"] = clamp(0, currentSave["energyCurrent"]+energyFlux, currentSave["energyGoal"])
     s["worksLeft"] += -1
 
