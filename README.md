@@ -66,10 +66,10 @@ Most classes have a fun little perk they grant the specimen when it is the prima
 
 #### DO NOT touch the .json files without reading this!! it will break things!
 * `temp.json` is the file that the game uses to store information when another window needs to access it since i couldnt figure out how to pass that information as a variable to the other window
-* `data.json` is the file used to store potential names and information about the classes, and is used when generating new specimens
-* `events.json` contains the entire event pool. it can be edited but be very careful about json formatting. the good part of this is that if python doesnt like the formatting, it'll tell you exactly where in the file it found something yucky
-* if you delete any of these the program will crash because it does not validate that it exists before looking for it. i havent changed that because im lazy. fight me
+* `data.json` is the file used to store the pool of specimen names and information about the classes, and is used when generating new specimens
+* `events.json` contains the entire event pool. it can be edited but be very careful about json formatting. the good part of this is that if python doesnt like the formatting, it'll tell you exactly where in the file it found the yucky thing when it Crashes Immediately upon trying to load this file
 * `memnode.json` must be deleted to make a new save. just don't delete it mid-game and you're good
+* if you delete any of these files (except `memnode.json`) the program will crash almost immediately because it does not validate that it exists before looking for it. i havent changed that because im lazy
 #### event categories are indexed as follows:
 0. mental fractures
 1. mental breaks
@@ -93,7 +93,10 @@ Most classes have a fun little perk they grant the specimen when it is the prima
 10. bad end/disintegration loop
 11. bad end/disintegration loop (can continue)
 12. true end 
-~~13. catharsis (from mental fractures)~~
+13. the divide (1) ## unused
+14. the divide (2) ## unused
+15. the divide (3) ## unused
+16. the divide (4) ## unused
 #### how `data.json` is indexed
 0. male names
 1. female names
