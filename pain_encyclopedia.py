@@ -56,6 +56,8 @@ eventPool = {}
 
 eventQueue = []
 
+waitTime = 0.4
+
 
 def open_status_window():
     print(escGrey + "[Finish observing specimen status to continue.]" + escEnd)
@@ -157,19 +159,21 @@ def new_game():
     print("[HNos] Pull how many specimens...? ")
     while True:
         try:
-            pullAmount = int(input())
-            if pullAmount in [1, 2, 3, 4, 5, 6, 7, 8, 9]: break
+            pullNumber = int(input())
+            if pullNumber in [1, 2, 3, 4, 5, 6, 7, 8, 9]: break
             else: raise ValueError
         except ValueError, TypeError:
             clear_lines(1)
             continue
-    counter = 0
-    for i in range(pullAmount):
-        if counter == 0:
-            clear_lines(1)
-            print("[HNos] Awakening specimens from cryptosleep...")
-        newSave["specimens"].append(generate_specimen())
-        counter += 1
+    print("[HNos] Awakening specimens from cryptosleep...")
+    for s in generate_specimens(pullNumber): newSave["specimens"].append(s)
+#    counter = 0
+#    for i in range(pullNumber):
+#        if counter == 0:
+#            clear_lines(1)
+#            print("[HNos] Awakening specimens from cryptosleep...")
+#        newSave["specimens"].append(generate_specimen())
+#        counter += 1
     if goal == 1:
         newSave["difficulty"] = "LENIENT"
         newSave["energyGoal"] = 150
@@ -191,87 +195,103 @@ def new_game():
     print("[HNos] Memory node created.")
 
 
-def generate_specimen():
+def generate_specimens(pullNumber):
+    allSpecimens = []
+    potentialLetters = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     data = load(open("data.json", "r"))
-    s = {} ## create empty dictionary; this is the specimen
-    ## generate and add to the specimen an ID composed of a letter and 4 numbers
-    randomLetter = choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    s.update({"ID": str(randomLetter + "-" + str(randint(0,9))) + str(randint(0,9)) + str(randint(0,9)) + str(randint(0,9))})
-    print("[HNos] Acceptable specimen found. Establishing connection and pulling specimen " + s["ID"] + " from cryptosleep reserves.")
-    ## add stats
-    s.update([["combat", 1], ["medical", 1], ["social", 1], ["mechanical", 1], ["psychic", 1]])
-    ## add fur pattern, sex, and name
-    s.update({"fur": choice(["D.BRWN", "N.BRWN", "L.BRWN", "D.GREY", "N.GREY", "L.GREY", "P.BLCK", "P.WHIT"])})
-    s.update({"sex": "M"}) if randint(0,1) == 0 else s.update({"sex": "F"}) ## i dont know how i feel about shorthand if tbh. i think just condensing the individual statements to one line is nice but combining them uses weird syntax like this and i dont know if i like it
-    s.update({"name": choice(data[0])}) if s["sex"] == "M" else s.update({"name": choice(data[1])})
-    print("[" + s["ID"] + "] Physiological scanning for disposition...")
-    ## pick a class at random and fill in that class' name, weight and alignment
-    primaryClass = choice(data[2])
-    s.update([["class", primaryClass["title"]], ["weight", primaryClass["weight"]], ["alignment", primaryClass["alignment"]]])
-    match primaryClass["weight"]:
-        case "Light":
-            s.update({"healthMax": randint(11,12)})
-            s["medical"] += 1
-            s["social"] += 2
-            s["mechanical"] += 1
-            s["psychic"] += 2
-        case "Medm.":
-            s.update({"healthMax": randint(13,15)})
-            s["combat"] += 1
-            s["medical"] += 2
-            s["mechanical"] += 2
-            s["psychic"] += 1
-        case "Heavy":
-            s.update({"healthMax": randint(15,17)})
-            s["combat"] += 2
-            s["social"] += 1
-            s["psychic"] += 1
-    match primaryClass["alignment"]:
-        case "Arcane":
-            s.update({"mood": randint(70,80)})
-            s["medical"] += 1
-            s["mechanical"] += 1
-            s["psychic"] += 1
-        case "Divine":
-            s.update({"mood": randint(80,90)})
-            s["medical"] += 1
-            s["social"] += 1
-            s["mechanical"] += 1
-        case "Occult":
-            s.update({"mood": randint(60,70)})
-            s["social"] += 1
-            s["mechanical"] += 1
-            s["psychic"] += 1
-        case "Primal":
-            s.update({"mood": randint(60,90)})
-            s["medical"] += 1
-            s["social"] += 1
-            s["psychic"] += 1
-    sleep(.8)
-    print("[" + s["ID"] + "] Found specimen's disposition: " + str(s["weight"].upper() + "/" + str(s["alignment"].upper())))
-    print("[" + s["ID"] + "] Neural scanning for class...")
-    for skill in ["combat", "medical", "social", "mechanical", "psychic"]: s[skill] += primaryClass[skill]
-    sleep(.7)
-    print("[" + s["ID"] + "] Found specimen's primary class: " + str(s["class"].upper()))
-    ## determine secondary class completely randomly because i havent made it select a secondary class properly
-    secondaryClass = choice(data[2])
-    s.update({"secondaryClass": secondaryClass["title"]})
-    for skill in ["combat", "medical", "social", "mechanical", "psychic"]: s[skill] += primaryClass[skill]
-    match secondaryClass["weight"]:
-        case "Light": s["healthMax"] += randint(-2, -1)
-        case "Medm.": s["healthMax"] += randint(-1, 1)
-        case "Heavy": s["healthMax"] += randint(1, 2)
-    s["healthMax"] = clamp(9, s["healthMax"], 18)
-    s.update({"health": s["healthMax"]})
-    sleep(.4)
-    print("[" + s["ID"] + "] Found specimen's secondary class: " + str(s["secondaryClass"].upper()))
-    sleep(.7)
-    print("[" + s["ID"] + "] Specimen has been awoken from cryptosleep. Be mindful of cryptosleep sickness.")
-    ## clamp all the skills to make sure none of them are negative or over 9
-    for skill in ["combat", "medical", "social", "mechanical", "psychic"]: s[skill] = clamp(0, s[skill], 9)
-    ## add health, pain, mentalDmg and worksLeft fields. health starts equal to healthMax because obviously they cant start at 0 or they die immediately
-    s.update([["health", s["healthMax"]], ["pain", 0], ["mentalDmg", 0], ["worksLeft", 0]])
-    return s
+    potentialMNames = data[0]
+    potentialFNames = data[1]
+    potentialClasses = data[2]
+    for i in range(pullNumber):
+        s = {} ## create empty dictionary; this is the specimen
+        ## generate and add to the specimen an ID composed of a letter and 4 numbers
+        chosenLetter = choice(potentialLetters)
+        potentialLetters.remove(chosenLetter)
+        s.update({"ID": str(chosenLetter + "-" + str(randint(0,9))) + str(randint(0,9)) + str(randint(0,9)) + str(randint(0,9))})
+        print("[HNos] Acceptable specimen found. Establishing connection and pulling specimen " + s["ID"] + " from cryptosleep reserves.")
+        ## add stats
+        s.update([["combat", 1], ["medical", 1], ["social", 1], ["mechanical", 1], ["psychic", 1]])
+        ## add fur pattern, sex, and name
+        s.update({"fur": choice(["D.BRWN", "N.BRWN", "L.BRWN", "D.GREY", "N.GREY", "L.GREY", "P.BLCK", "P.WHIT"])})
+        s.update({"sex": "M"}) if randint(0,1) == 0 else s.update({"sex": "F"}) ## i dont know how i feel about shorthand if tbh. i think just condensing the individual statements to one line is nice but combining them uses weird syntax like this and i dont know if i like it
+        if s["sex"] == "M":
+            chosenName = choice(potentialMNames)
+            s.update({"name": chosenName})
+            potentialMNames.remove(chosenName)
+        else: 
+            chosenName = choice(potentialFNames)
+            s.update({"name": chosenName})
+            potentialFNames.remove(chosenName)
+        print("[" + s["ID"] + "] Physiological scanning for disposition...")
+        ## pick a class at random and fill in that class' name, weight and alignment
+        primaryClass = choice(potentialClasses)
+        potentialClasses.remove(primaryClass)
+        s.update([["class", primaryClass["title"]], ["weight", primaryClass["weight"]], ["alignment", primaryClass["alignment"]]])
+        match primaryClass["weight"]:
+            case "Light":
+                s.update({"healthMax": randint(11,12)})
+                s["medical"] += 1
+                s["social"] += 1 #2
+                s["mechanical"] += 1
+                s["psychic"] += 1 #2
+            case "Medm.":
+                s.update({"healthMax": randint(13,15)})
+                s["combat"] += 1
+                s["medical"] += 1 #2
+                s["mechanical"] += 1 #2
+                s["psychic"] += 1
+            case "Heavy":
+                s.update({"healthMax": randint(15,17)})
+                s["combat"] += 1 #2
+                s["social"] += 1
+                s["psychic"] += 1
+        match primaryClass["alignment"]:
+            case "Arcane":
+                s.update({"mood": randint(70,80)})
+                s["medical"] += 1
+                s["mechanical"] += 1
+                s["psychic"] += 1
+            case "Divine":
+                s.update({"mood": randint(80,90)})
+                s["medical"] += 1
+                s["social"] += 1
+                s["mechanical"] += 1
+            case "Occult":
+                s.update({"mood": randint(60,70)})
+                s["social"] += 1
+                s["mechanical"] += 1
+                s["psychic"] += 1
+            case "Primal":
+                s.update({"mood": randint(60,90)})
+                s["medical"] += 1
+                s["social"] += 1
+                s["psychic"] += 1
+        sleep(.8)
+        print("[" + s["ID"] + "] Found specimen's disposition: " + str(s["weight"].upper() + "/" + str(s["alignment"].upper())))
+        print("[" + s["ID"] + "] Neural scanning for class...")
+        for skill in ["combat", "medical", "social", "mechanical", "psychic"]: s[skill] += primaryClass[skill]
+        sleep(.7)
+        print("[" + s["ID"] + "] Found specimen's primary class: " + str(s["class"].upper()))
+        ## determine secondary class completely randomly because i havent made it select a secondary class properly
+        secondaryClass = choice(data[2])
+        s.update({"secondaryClass": secondaryClass["title"]})
+        for skill in ["combat", "medical", "social", "mechanical", "psychic"]: s[skill] += primaryClass[skill]
+        match secondaryClass["weight"]:
+            case "Light": s["healthMax"] += randint(-2, -1)
+            case "Medm.": s["healthMax"] += randint(-1, 1)
+            case "Heavy": s["healthMax"] += randint(1, 2)
+        s["healthMax"] = clamp(9, s["healthMax"], 18)
+        s.update({"health": s["healthMax"]})
+        sleep(.4)
+        print("[" + s["ID"] + "] Found specimen's secondary class: " + str(s["secondaryClass"].upper()))
+        sleep(.7)
+        print("[" + s["ID"] + "] Specimen has been awoken from cryptosleep. Be mindful of cryptosleep sickness.")
+        ## clamp all the skills to make sure none of them are negative or over 9
+        for skill in ["combat", "medical", "social", "mechanical", "psychic"]: s[skill] = clamp(0, s[skill], 9)
+        ## add health, pain, mentalDmg and worksLeft fields. health starts equal to healthMax because obviously they cant start at 0 or they die immediately
+        s.update([["health", s["healthMax"]], ["pain", 0], ["mentalDmg", 0], ["worksLeft", 0]])
+        allSpecimens.append(s)
+    return allSpecimens
 
 
 def cycle():
@@ -422,6 +442,11 @@ def induce_event(category, targetIndex):
         else: ## if the event is targeted and a target was specified,
             eventToCheck.update({"target": targetIndex})
             eventToAppend = eventToCheck ## append the event and the target's index
+    ## check event to see if it is the same as an existing event; if it is, reroll the event
+    for occurance in eventQueue:
+        if eventToAppend["title"] == occurance["title"]:
+            induce_event(category, targetIndex) ## this does mean the two versions of rogue biotech can't appear at the same time but. Eh
+            return
     ## check certain events to reduce (but not eliminate) the odds that you get a useless event
     ## reroll target once if the target of Weaveskin Nanite Infection already has 40 max health
     if eventToCheck == eventPool[5][1] and currentSave["specimens"][eventToCheck["target"]]["healthMax"] == 40:
@@ -497,13 +522,22 @@ def cycle_end():
         elif choice == 1:
             clear_lines(1)
             for s in currentSave["specimens"]:
-                if s["class"] == "Ritualist": currentSave["energyCurrent"] = clamp(0, currentSave["energyCurrent"]+round(currentSave["energyGoal"]*0.01), currentSave["energyGoal"])
-                elif s["class"] == "Scavenger": s["health"] = clamp(0, s["health"]+randint(1,3), s["healthMax"])
+                if s["class"] == "Ritualist":
+                    if currentSave["energyCurrent"] < currentSave["energyGoal"]:
+                        energyFlux = clamp(0, currentSave["energyCurrent"]+round(currentSave["energyGoal"]*0.01), currentSave["energyGoal"])
+                        currentSave["energyCurrent"] = clamp(0, currentSave["energyCurrent"]+energyFlux, currentSave["energyGoal"])
+                        print(f"[{s["ID"]}] Ritualist passively produced energy."); sleep(waitTime)
+                elif s["class"] == "Scavenger":
+                    if s["health"] < s["healthMax"]:
+                        print(f"[{s["ID"]}] Scavenger self-medicated."); sleep(waitTime)
+                        s["health"] = clamp(0, s["health"]+randint(4,6), s["healthMax"])
                 elif s["class"] == "Researcher":
+                    counter = 0
                     while s["worksLeft"] > 0:
                         s["pain"] = clamp(0, s["pain"]+randint(-7,-6), 100)
                         s["mood"] = clamp(0, s["mood"]+randint(6,7), 100)
                         s["worksLeft"] += -1
+                    if counter != 0: print(f"[{s["ID"]}] Researcher used remaining work time ({str(counter)}) to efficiently regulate mood/pain."); sleep(waitTime)
             currentSave["cycleCount"] += 1
             cycle()
         else: raise ValueError
@@ -628,7 +662,7 @@ def choose_specimen_to_assign(option, thisEvent, linesToClear):
                     choose_specimen_to_assign(option, thisEvent, linesToClear)
                 else:
                     currentSave["specimens"][choice-1]["worksLeft"] += -1
-                    print("[" + currentSave["specimens"][choice-1]["ID"] + "] Specimen has been assigned to handle event.")
+                    print("[" + currentSave["specimens"][choice-1]["ID"] + "] Specimen assigned to handle event.")
                     resolve_option(option, thisEvent, choice-1)
             elif "reqClasses" in option:
                 requiredClasses = option["reqClasses"]
@@ -644,7 +678,7 @@ def choose_specimen_to_assign(option, thisEvent, linesToClear):
                     choose_specimen_to_assign(option, thisEvent, linesToClear)
                 else:
                     currentSave["specimens"][choice-1]["worksLeft"] += -1
-                    print("[" + currentSave["specimens"][choice-1]["ID"] + "] Specimen has been assigned to handle event.")
+                    print("[" + currentSave["specimens"][choice-1]["ID"] + "] Specimen assigned to handle event.")
                     resolve_option(option, thisEvent, choice-1)
     except ValueError, TypeError, IndexError, KeyError:
         clear_lines(1)
@@ -668,6 +702,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
                 if saveChanges["specimens"][assignedSpecimen]["class"] == "Corpsman":
                     s["health"] = clamp(0, s["health"]+round(s["healthMax"]*0.25), s["healthMax"])
                     s["pain"] = clamp(0, s["pain"]+randint(-3,-2), 100)
+                    print(f"[{saveChanges["specimens"][assignedSpecimen]["ID"]}] Corpsman attempted to stabilize specimen."); sleep(waitTime)
             healthFlux = randint(e["health"][0], e["health"][1])
             s["health"] = clamp(0, s["health"]+healthFlux, s["healthMax"])
             if healthFlux <= 0: s["mood"] = clamp(0, round(s["mood"]+(healthFlux/4)), 100) ## only affect mood if it's damage and not healing
@@ -972,6 +1007,8 @@ main()
 ## * there's nothing actually stopping you from having a specimen unable to train a skill train it
 ## * work window softlocks you if you start to assign for a work type when no one can work. solved by closing the work window
 ## * game bricks sometimes when an event kills a specimen
+## * there's nothing actually stopping you from assigning a specimen who is at 0 health from handling events or working
+## * duplicate flags
 ## TODO:
 ## * make it so multiple specimens cant generate with the same letter
 ## * cap the number of specimens that can be pulled

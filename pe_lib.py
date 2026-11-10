@@ -39,7 +39,7 @@ def display_status():
     escGrey = '\x1b[37m'    ## corresponds to 'STARTGREY'
     escEnd = '\x1b[m'       ## corresponds to 'ENDCOLOR'. stops current escape
 
-    print(f"  ------------- Energy: {str(currentSave["energyCurrent"])}/{str(currentSave["energyGoal"])}u -------------\n")
+    print(f"{escEnd}{escGrey}  ------------- Energy: {str(currentSave["energyCurrent"])}/{str(currentSave["energyGoal"])}u -------------{escRed}\n")
     system("title Current specimens: " + str(len(currentSave["specimens"])))
     if len(currentSave["specimens"]) == 0:
         print(escGold + "           [No specimens connected.]")
@@ -110,10 +110,11 @@ def display_status():
             if s["worksLeft"] <= 0: work = escRed + str(s["worksLeft"])
             else: work = escBRed + str(s["worksLeft"]) + escEnd + escRed
             maxHealth = "" ## maximum health
-#            if s["healthMax"] == 40: maxHealth = escGold + str(s["healthMax"]) + escRed
-            if s["healthMax"] >= 30: maxHealth = escBRed + str(s["healthMax"]) + escEnd + escRed
+            if s["healthMax"] >= 40: maxHealth = escPurple + str(s["healthMax"]) + escRed + escRed
+            if s["healthMax"] <= 8: maxHealth = escBRed + str(s["healthMax"]) + escEnd + escRed
             else: maxHealth = escRed + str(s["healthMax"]) + escRed
             currentHealth = "" ## current health, colored based on how full it is
+            if s["health"] <= 7: currentHealth = escGold + str(s["health"]) + escEnd + escRed
             if s["health"] < round(s["healthMax"]*0.50) and s["class"] != "Scavenger": currentHealth = escBRed + str(s["health"]) + escEnd + escRed
             else: currentHealth = escRed + str(s["health"]) + escRed
             pain = "" ## current pain

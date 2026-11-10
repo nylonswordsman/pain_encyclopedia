@@ -54,6 +54,23 @@
     },
     {
       "targeted": true,
+      "title": "ENDCOLORSTARTHLREDSudden Pacifism",
+      "description": "        Specimen SPECIMEN has suddenly lost the ability to fight. It cites feelings of extreme stress in combat scenarios. Neural data matches these claims.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "combat": -10,
+            "mood": [59,61],
+            "worksLeft": -1,
+            "mentalDmg": 1
+          }
+        }
+      ]
+    },
+    {
+      "targeted": true,
       "title": "ENDCOLORSTARTHLREDplaceholder",
       "description": "        placeholder. Its maximum health was significantly reduced.",
       "options": [
@@ -72,7 +89,7 @@
     {
       "targeted": true,
       "title": "ENDCOLORSTARTHLREDPsychic Burst",
-      "description": "        SPECIMEN attempted to take a portion of the stored psychic energy and was quickly overloaded by it. A portion of the energy was lost, its psychic ability was degraded, and it is experiencing much pain.",
+      "description": "        SPECIMEN attempted to take a portion of the stored psychic energy for itself and was quickly overloaded by it. A portion of the energy was lost, its psychic ability was degraded, and it is experiencing much pain.",
       "options": [
         {"title": "Ok",
           "needsAssignment": false,
@@ -80,7 +97,7 @@
             "mood": [59,61],
             "energy": [-65,-45],
             "pain": [13,20],
-            "psychic": -2,
+            "psychic": -1,
             "worksLeft": -1,
             "mentalDmg": 1
           }
@@ -820,7 +837,7 @@
           "effects": {
             "worksLeft": -1,
             "pain": [9,13],
-            "combat": 2
+            "combat": 1
           }
         },
         {
@@ -906,7 +923,7 @@
     {
       "targeted": true,
       "title": "STARTGOLDNerve Fray Nanite Infection",
-      "description": "        Specimen SPECIMEN has caught a nanite infection which was designed to decrease mechanical, medical and combat ability through targeted destruction of small sections of the nervous system.",
+      "description": "        Specimen SPECIMEN has caught a nanite infection which was designed for targeted destruction of small sections of the nervous system. It will lose some fine motor skills.",
       "options": [
         {
           "title": "Ok",
@@ -1007,10 +1024,7 @@
           "title": "No action",
           "needsAssignment": false,
           "effects": {
-            "mood": [
-              10,
-              20
-            ],
+            "mood": [10,20],
             "worksLeft": -1
           }
         }
@@ -1209,7 +1223,7 @@
     {
       "targeted": false,
       "title": "STARTCYANNotable File Decrypted",
-      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<It's not alive. I guess that's the point?NEWLINE        When I look at its visor, all I can think is... why did V think *this* was the solution? And why did everyone else let it slide? If all the *people* go insane when we make them oversee the project, just make a robot do it! Those can't go insane, surely!NEWLINE        And the logic is fine, I guess. They're not wrong, robots don't go insane or get attatched if you don't program 'em to. But like...NEWLINE        Can't we just... not do this? I'm starting to have my doubts.NEWLINE        But when was my opinion ever relevant! Who the hell ever listens to a guy named Steve.>",
+      "description": "        An archived text file has been decrypted. NEWLINE        STARTCYAN<It's not alive. I guess that's the point?NEWLINE        When I look at its visor, all I can think is... why did V think *this* was the solution? And why did everyone else let it slide? If all the *people* go insane when we make them oversee the project, just make a robot do it! Those can't go insane, surely!NEWLINE        And the logic is fine, I guess. They're not wrong, robots don't go insane or get attatched if you don't program 'em to. And V said it has, like... weird precognition where it can predict what will happen and have the specimens work to prepare for it ahead of time, like having one train for fighting or heal up another one right before a raider barges in. But like...NEWLINE        Can't we just... not do this? I'm starting to have my doubts.NEWLINE        But when was my opinion ever relevant! Who the hell ever listens to a guy named Steve.>",
       "options": [
         {
           "title": "Ok",
@@ -1405,6 +1419,54 @@
           "effects": {
             "ending": 3
           }
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANThe Divide (1)",
+      "description": "        A segment of an email containing potentially useful information was found.NEWLINE        STARTCYAN<NEWLINE        From: Anne B.NEWLINE        To: Ryan F.        NEWLINE        Subject: The divideNEWLINENEWLINE        Hi! I heard you're a new intern here so I wanted to go over a few things with you about the specimens.NEWLINE        So, first off, you might have noticed them in different uniforms. We make different uniforms for different specimens because they all are divided into these 'classes' that do different things, and they need clothes to match because it makes them better at their jobs. For most of them. You might have noticed, for example, that the medic ones have medic bags.NEWLINE        It also helps us humans tell what a specimen does at a glance since we can't ask them with words. Or meaningfully interact with them at all really.NEWLINE        Anyway the uniforms also make the seperation of their psychic energy types more obvious because each type has a different color. Arcane is blue, divine is white, occult is black, primal is green. That's important when we need to test different energy types or when we just need a specific type for whatever application.NEWLINENEWLINE        ...NEWLINE        >",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANThe Divide (2)",
+      "description": "        A segment of an email containing potentially useful information was found.NEWLINE        STARTCYAN<NEWLINE        ...NEWLINENEWLINE        One of the classes it would probably be good to memorize is Elites. If you have to pick a specimen to almost die next to, an elite is gonna be one of your best bets in almost any situation!NEWLINE        They wear this navy blue dress uniform kind of outfit, and their thing is that they're really lucky, but only under pressure if that makes sense. A good comparison someone made once was that they won't pass medical school, but they're still perfectly able to save your life 90% of the time.NEWLINENEWLINE        ...NEWLINE        >",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANThe Divide (3)",
+      "description": "        A segment of an email containing potentially useful information was found.NEWLINE        STARTCYAN<NEWLINE        ...NEWLINENEWLINE        ritualist vs. biotechnicianNEWLINENEWLINE        ...NEWLINE        >",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {}
+        }
+      ]
+    },
+    {
+      "targeted": false,
+      "title": "STARTCYANThe Divide (4)",
+      "description": "        A segment of an email containing potentially useful information was found.NEWLINE        STARTCYAN<NEWLINE        ...NEWLINENEWLINE        hemomancer/mindbreakerNEWLINENEWLINE        ...NEWLINE        >",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {}
         }
       ]
     }
