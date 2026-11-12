@@ -127,9 +127,9 @@
       "title": "Mindbreaker",
       "weight": "Light",
       "alignment": "Occult",
-      "combat": 0,
+      "combat": -1,
       "medical": 0,
-      "social": -1,
+      "social": 0,
       "mechanical": 0,
       "psychic": 2
     },
@@ -139,8 +139,8 @@
       "alignment": "Occult",
       "combat": 1,
       "medical": 1,
-      "social": -1,
-      "mechanical": 0,
+      "social": 0,
+      "mechanical": -2,
       "psychic": 0
     },
     {

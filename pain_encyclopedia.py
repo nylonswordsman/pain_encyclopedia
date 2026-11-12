@@ -353,10 +353,10 @@ def cycle():
             s["worksLeft"] += -1
             print(escRed + "[" + s["ID"] + "] Specimen work ability reduced - excessive pain." + escRed)
         if s["health"] < round(s["healthMax"]*0.20) and s["worksLeft"] > 0:
-            s["worksLeft"] += -1
+            s["worksLeft"] += -2
             print(escRed + "[" + s["ID"] + "] Specimen work ability heavily reduced - extremely poor physical condition." + escRed)
         elif s["health"] < round(s["healthMax"]*0.50) and s["worksLeft"] > 0:
-            s["worksLeft"] += -2
+            s["worksLeft"] += -1
             print(escRed + "[" + s["ID"] + "] Specimen work ability reduced - poor physical condition." + escRed)
         if s["mood"] < 33 and s["worksLeft"] > 0:
             s["worksLeft"] += -1
@@ -702,7 +702,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
                 if saveChanges["specimens"][assignedSpecimen]["class"] == "Corpsman":
                     s["health"] = clamp(0, s["health"]+round(s["healthMax"]*0.25), s["healthMax"])
                     s["pain"] = clamp(0, s["pain"]+randint(-3,-2), 100)
-                    print(f"[{saveChanges["specimens"][assignedSpecimen]["ID"]}] Corpsman attempted to stabilize specimen."); sleep(waitTime)
+                    print(f"[{saveChanges["specimens"][assignedSpecimen]["ID"]}] Corpsman provided additional healing."); sleep(waitTime)
             healthFlux = randint(e["health"][0], e["health"][1])
             s["health"] = clamp(0, s["health"]+healthFlux, s["healthMax"])
             if healthFlux <= 0: s["mood"] = clamp(0, round(s["mood"]+(healthFlux/4)), 100) ## only affect mood if it's damage and not healing
@@ -1009,6 +1009,7 @@ main()
 ## * game bricks sometimes when an event kills a specimen
 ## * there's nothing actually stopping you from assigning a specimen who is at 0 health from handling events or working
 ## * duplicate flags
+## * researcher passive doesnt work
 ## TODO:
 ## * write neutral/good/true endings
 ## * visual energy progress bar at cycle start

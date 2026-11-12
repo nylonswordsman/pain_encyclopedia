@@ -110,7 +110,7 @@ def display_status():
             if s["worksLeft"] <= 0: work = escRed + str(s["worksLeft"])
             else: work = escBRed + str(s["worksLeft"]) + escEnd + escRed
             maxHealth = "" ## maximum health
-            if s["healthMax"] >= 40: maxHealth = escPurple + str(s["healthMax"]) + escRed + escRed
+            if s["healthMax"] >= 40: maxHealth = escPurple + str(s["healthMax"]) + escRed
             if s["healthMax"] <= 8: maxHealth = escBRed + str(s["healthMax"]) + escEnd + escRed
             else: maxHealth = escRed + str(s["healthMax"]) + escRed
             currentHealth = "" ## current health, colored based on how full it is

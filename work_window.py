@@ -25,7 +25,7 @@ escEnd = '\x1b[m'       ## corresponds to 'ENDCOLOR'. stops current escape
 
 currentSave = load(open("temp.json", "r"))
 
-waitTime = 0.4
+waitTime = 0.6
 
 
 
@@ -145,7 +145,7 @@ def display_doctor_targets():
     global currentSave
     i = 0
     for s in currentSave["specimens"]:
-        if s["health"] >= s["healthMax"]: print(f"{escGrey}[X]. {s["ID"]}/{s["name"]} (HEA: {s["health"]}/{s["healthMax"]} | Cannot heal further){escRed}")
+        if s["health"] >= s["healthMax"]: print(f"{escGrey}[X]. {s["ID"]}/{s["name"]} (HEA: {s["health"]}/{s["healthMax"]} | Maximum){escRed}")
         else: print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} (HEA: {s["health"]}/{s["healthMax"]}){escRed}")
         i += 1
     print("     [Choose a specimen to be treated...]")
@@ -166,11 +166,11 @@ def display_refine_targets(workerIndex):
     for s in currentSave["specimens"]:
         if d["class"] == "Biotech.":
             if s["healthMax"] >= 40:
-                print(f"{escGrey}[X]. {s["ID"]}/{s["name"]} (M.HEA: {s["healthMax"]} | Biotech Maximum{escRed}")
+                print(f"{escGrey}[X]. {s["ID"]}/{s["name"]} (M.HEA: {s["healthMax"]} | Biotech Maximum){escRed}")
             else: print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} (M.HEA: {s["healthMax"]}){escRed}")
         else:
             if s["healthMax"] >= 30:
-                print(f"{escGrey}[X]. {s["ID"]}/{s["name"]} (M.HEA: {s["healthMax"]} | Maximum{escRed}")
+                print(f"{escGrey}[X]. {s["ID"]}/{s["name"]} (M.HEA: {s["healthMax"]} | Maximum){escRed}")
             else: print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} (M.HEA: {s["healthMax"]}){escRed}")
         i += 1
     print("     [Choose a specimen to be refined...]")
@@ -267,17 +267,17 @@ def execute_rest(workerIndex):
     global currentSave
     s = currentSave["specimens"][workerIndex]
     if s["class"] == "Elite":
-        moodFlux = randint(4, 5)+(round((s["social"]*0.6)*0.7))
-        painFlux = randint(-5, -4)+(round(s["social"]*0.7)*-1)
+        moodFlux = randint(4, 5)+(round((s["social"]*0.60)*0.70))
+        painFlux = randint(-5, -4)+(round(s["social"]*-0.70))
     elif s["class"] == "Commander":
-        moodFlux = randint(3, 4)+(round(s["social"]*0.7))
-        painFlux = randint(-5, -3)+(round(s["social"]*0.7)*-1)
+        moodFlux = randint(3, 4)+(round(s["social"]*0.70))
+        painFlux = randint(-5, -3)+(round(s["social"]*-0.70))
         for specimen in currentSave["specimens"]:
             s["mood"] = clamp(0, s["mood"]+randint(2,4), 100)
         print(f"{escRed}[{s["ID"]}] Commander boosted morale."); sleep(waitTime)
     else:
-        moodFlux = randint(4, 5)+(round(s["social"]*0.7))
-        painFlux = randint(-5, -4)+(round(s["social"]*0.7)*-1)
+        moodFlux = randint(4, 5)+(round(s["social"]*0.70))
+        painFlux = randint(-5, -4)+(round(s["social"]*0.70)*-1)
     s["mood"] = clamp(0, s["mood"]+moodFlux, 100)
     s["pain"] = clamp(0, s["pain"]+painFlux, 100)
     s["worksLeft"] += -1
@@ -287,16 +287,16 @@ def execute_doctor(workerIndex, targetIndex):
     d = currentSave["specimens"][workerIndex] ## 'd' stands for doctor
     p = currentSave["specimens"][targetIndex] ## 'p' stands for patient
     ## assigning heal formula according to class; some classes are better or worse at doctoring than others
-    if d["class"] == "Medic": healthFlux = max(round((d["medical"]+randint(-1, 1))*1.2), 2)
-    elif d["class"] == "Hemomancer": healthFlux = max(round((d["medical"]+2)*1.4), 5)
-    elif d["class"] == "Elite": healthFlux = round(((d["medical"]*0.6)+randint(-2, -1))*1.2)
+    if d["class"] == "Medic": healthFlux = max(round((d["medical"]+randint(-1, 1))*1.20), 2)
+    elif d["class"] == "Hemomancer": healthFlux = max(round((d["medical"]+1)*1.30), 5)
+    elif d["class"] == "Elite": healthFlux = round(((d["medical"]*0.6)+randint(-2, -1))*1.20)
     else: healthFlux = round((d["medical"]+randint(-2, -1))*1.2)
     ## the actual heal
     p["health"] = clamp(0, p["health"]+healthFlux, p["healthMax"])
     ## assigning an additional effect according to class, if the specimen is one of the classes that has those
     if d["class"] == "Hemomancer":
         print(f"{escRed}[{d["ID"]}] Hemomancer operating beyond safety limits."); sleep(waitTime)
-        d["health"] = clamp(0, d["health"]+min(round(d["healthMax"]*-0.25), -4), d["healthMax"])
+        d["health"] = clamp(0, d["health"]+max(round(d["healthMax"]*-0.20), -6), d["healthMax"])
         if d["health"] <= 0: 
             print(f"{escRed}[{d["ID"]}] {escGold}WARN: Physical status compromised.{escRed}"); sleep(waitTime)
     elif d["class"] == "Paragon":
@@ -310,16 +310,16 @@ def execute_store_energy(workerIndex):
     global currentSave
     s = currentSave["specimens"][workerIndex] ## 's' stands for specimen
     if s["class"] == "Mindbreaker": energyFlux = max((randint(1,2)+round(s["psychic"]*0.75)), randint(4,5))
-    elif s["class"] == "Elite": energyFlux = max((randint(1,2)+round((s["psychic"]*0.55)*0.5)), randint(2,3))
+    elif s["class"] == "Elite": energyFlux = max((randint(1,2)+round((s["psychic"]*0.55)*0.50)), randint(2,3))
     else: energyFlux = max((randint(1,2)+round(s["psychic"]*0.45)), randint(2,3))
     if s["class"] == "Mindbreaker":
         print(f"{escRed}[{s["ID"]}] Mindbreaker operating beyond safety limits."); sleep(waitTime)
-        healthFlux = min(round(s["healthMax"]*-0.1), randint(-3, -2))
+        healthFlux = min(round(s["healthMax"]*-0.10), randint(-3, -2))
         if s["health"] + healthFlux <= 0:
             s["mentalDmg"] = clamp(0, s["mentalDmg"]+1, 3)
             print(f"{escRed}[{s["ID"]}] {escGold}WARN: Mental state damaged.{escRed}"); sleep(waitTime)
         else: s["health"] = clamp(0, s["health"]+healthFlux, s["healthMax"])
-        s["pain"] = clamp(0, s["pain"]+round(s["psychic"]*0.4), 100)
+        s["pain"] = clamp(0, s["pain"]+round(s["psychic"]*0.40), 100)
 
     currentSave["energyCurrent"] = clamp(0, currentSave["energyCurrent"]+energyFlux, currentSave["energyGoal"])
     s["worksLeft"] += -1
@@ -337,9 +337,9 @@ def execute_train(workerIndex, skill):
 def execute_refine(workerIndex, targetIndex):
     d = currentSave["specimens"][workerIndex] ## 'd' stands for doctor
     p = currentSave["specimens"][targetIndex] ## 'p' stands for patient
-    if d["class"] == "Elite": healthMaxFlux = round(((d["mechanical"]*0.6)+randint(-5,-4)*0.6))
+    if d["class"] == "Elite": healthMaxFlux = round(((d["mechanical"]*0.60)+randint(-5,-4)*0.6))
     elif d["class"] == "Machinist": healthMaxFlux = round((d["mechanical"]+randint(-2, -1)*0.6))
-    else: healthMaxFlux = round((d["mechanical"]+randint(-5,-4)*0.6))
+    else: healthMaxFlux = round((d["mechanical"]+randint(-5,-4)*0.60))
     if d["class"] == "Biotech.":
         p["healthMax"] = clamp(0, p["healthMax"]+healthMaxFlux, 40)
         if p["healthMax"] > 30:

@@ -78,7 +78,7 @@
           "title": "Ok",
           "needsAssignment": false,
           "effects": {
-            "healthMax": [-16,-14],
+            "healthMax": [-11,-8],
             "mood": [59,61],
             "worksLeft": -1,
             "mentalDmg": 1
@@ -95,7 +95,7 @@
           "needsAssignment": false,
           "effects": {
             "mood": [59,61],
-            "energy": [-65,-45],
+            "energy": [-70,-60],
             "pain": [13,20],
             "psychic": -1,
             "worksLeft": -1,
@@ -605,6 +605,14 @@
           }
         },
         {
+          "title": "Assign an Elite to neutralize the threat",
+          "needsAssignment": true,
+          "reqClasses": ["Elite"],
+          "effects": {
+            "health": [-4,-2]
+          }
+        },
+        {
           "title": "No action",
           "needsAssignment": false,
           "effects": {
@@ -616,21 +624,21 @@
     {
       "targeted": true,
       "title": "STARTGREENRogue Medic",
-      "description": "        A medically-skilled intruder with no hostile intent is passing peacefully through the facility, but only made themselves known to SPECIMEN. They will medically assist it and grant it minor medical knowledge if it is permitted to continue interacting with them. Alternatively, it may be commanded to focus on its work instead.",
+      "description": "        A medically-skilled intruder with no hostile intent is passing peacefully through the facility, but only made themselves known to SPECIMEN. They will medically assist it and grant it minor medical knowledge if it is permitted to continue interacting with them. Alternatively, it will be commanded to focus on its work instead.",
       "options": [
         {
-          "title": "Deny SPECIMEN interaction",
-          "needsAssignment": false,
-          "effects": {}
-        },
-        {
-          "title": "No action",
+          "title": "Allow SPECIMEN interaction",
           "needsAssignment": false,
           "effects": {
             "health": [11,24],
             "worksLeft": -2,
             "medical": 1
           }
+        },
+        {
+          "title": "No action",
+          "needsAssignment": false,
+          "effects": {}
         }
       ]
     },
@@ -908,7 +916,7 @@
     {
       "targeted": true,
       "title": "STARTREDOssifying Nanite Infection",
-      "description": "        Specimen SPECIMEN has caught a nanite infection which is sometimes employed in underground land disputes. Small sections of SPECIMEN's flesh are beginning to turn to bone. The swarm must be excised and the affected chunks of flesh surgically removed. Its maximum health was reduced.",
+      "description": "        Specimen SPECIMEN has caught a nanite infection which is sometimes employed in underground land disputes. Small sections of SPECIMEN's flesh are beginning to turn to bone. The swarm must be excised and the affected flesh surgically removed. Its maximum health was reduced.",
       "options": [
         {
           "title": "Ok",
@@ -930,7 +938,6 @@
           "needsAssignment": false,
           "effects": {
             "medical": -1,
-            "combat": -1,
             "mechanical": -1
           }
         }
