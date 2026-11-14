@@ -92,7 +92,7 @@ def display_workers(workType):
             print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} (Skill: {str(s[skill])} | {escRed}Inefficient{escRed})")
         ## medic/machinist/elite doing their favored work types
         elif (s["class"] == "Medic" and skill == "medical") or (s["class"] == "Machinist" and skill == "mechanical") or (s["class"] == "Elite" and skill == "N/A"):
-            print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} (Skill: {str(s[skill])} | {escBRed}Efficient{escEnd}{escRed})")
+            print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} ({escBRed}Efficient{escEnd}{escRed})")
         ## biotechnician refining
         elif s["class"] == "Biotech." and skill == "mechanical":
             print(f"{escRed}[{str(int(i+1))}]. {s["ID"]}/{s["name"]} (Skill: {str(s[skill])} | {escBRed}Superior{escEnd}{escRed})")
