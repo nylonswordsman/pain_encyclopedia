@@ -715,6 +715,8 @@ def resolve_option(option, thisEvent, assignedSpecimen):
             saveChanges["currentEnergy"] = clamp(0, saveChanges["currentEnergy"]+energyFlux, saveChanges["energyGoal"])
         if "induceEvent" in e:
             for event in e["induceEvent"]: induce_event(event, None)
+        if "induceSpecific" in e:
+            induce_event(e["induceSpecific"], None)
 #        s["worksLeft"] = clamp(0, s["worksLeft"]-1, 9)
         ## if the specimen died, remove it from the roster
         if s["health"] <= 0:
@@ -761,7 +763,7 @@ def resolve_option(option, thisEvent, assignedSpecimen):
             if s["health"] <= 0:                
                 for occurance in eventQueue:
                     if "target" in occurance:
-                        if occurance["target"] == saveChanges["specimens"].index(s): eventQueue.remove(occurance)
+                        if occurance["target"] == saveChanges["specimens"].index(s): eventQueue.remove(eventQueue.index(occurance))
                         if len(currentSave["specimens"]) == 1:
                             open_status_window(), exit()
                         else: continue
@@ -1016,3 +1018,4 @@ main()
 ## * make it so secondary classes can match EITHER the weight or alignment but not both instead of being completely random
 ## * note events that explain the psychic energy types and also maybe some of the classes
 ## * more events that use energy property
+## * rage/greater rage code

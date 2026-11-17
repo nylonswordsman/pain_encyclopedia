@@ -134,6 +134,21 @@
           }
         }
       ]
+    },
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLGOLDGreater Rage",
+      "description": "         (PLACEHOLDER; acts identically to Suicide)NEWLINE        Specimen SPECIMEN has entered a murderous rage and cannot be consoled. It was able to eliminate one other specimen before it was killed in retaliation.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-52,-51],
+            "induceSpecific": 8
+          }
+        }
+      ]
     }
   ],
   [
@@ -211,7 +226,7 @@
           "title": "Ok",
           "needsAssignment": false,
           "effects": {
-            "health": [-12,-9],
+            "health": [-11,-8],
             "pain": [6,9]
           }
         }
@@ -226,7 +241,7 @@
           "title": "Ok",
           "needsAssignment": false,
           "effects": {
-            "health": [-9,-6],
+            "health": [-8,-6],
             "pain": [6,9]
           }
         }
@@ -241,7 +256,7 @@
           "title": "Ok",
           "needsAssignment": false,
           "effects": {
-            "health": [-6,-3],
+            "health": [-6,-4],
             "pain": [9,12]
           }
         }
@@ -256,7 +271,7 @@
           "title": "Filter SPECIMEN's blood",
           "needsAssignment": false,
           "effects": {
-            "health": [-5,-3],
+            "health": [-7,-5],
             "pain": [4,9],
             "worksLeft": -2
           }
@@ -265,7 +280,7 @@
           "title": "Administer antitoxin",
           "needsAssignment": false,
           "effects": {
-            "health": [-16,-8],
+            "health": [-13,-8],
             "pain": [4,9]
           }
         }
@@ -274,25 +289,15 @@
     {
       "targeted": true,
       "title": "STARTREDRod Impalement",
-      "description": "        A rod launcher has been mishandled or malfunctioned, resulting in SPECIMEN being impaled with a titanium rod.NEWLINE        The rod did not strike any vital organs, but has embedded itself in the specimen's body. It must be removed and the surrounding wound tended, as data shows that specimens frequently experience difficulties with work while impaled.NEWLINE        A specimen may be assigned to stabilize it immediately so as to minimize blood loss, but it will experience some degree of damage regardless.",
+      "description": "        SPECIMEN has entered an area of the facility in which it is not allowed, resulting in its impalement with a titanium rod.NEWLINE        The rod did not strike any vital organs, but has embedded itself in the specimen's body. It must be removed and the surrounding wound tended, as data shows that specimens frequently experience difficulties with work while impaled.NEWLINE        A specimen may be assigned to stabilize it immediately so as to minimize blood loss, but it will experience some degree of damage regardless.",
       "options": [
-        {
-          "title": "Assign a designated Corpsman to tend to SPECIMEN",
-          "needsAssignment": true,
-          "reqClasses": ["Corpsman"],
-          "effects": {
-            "worksLeft": -1,
-            "health": [-5,-4],
-            "pain": [6,10]
-          }
-        },
         {
           "title": "Assign a specimen to tend to SPECIMEN",
           "needsAssignment": true,
-          "reqSkill": "medical", "reqAmount": 4,
+          "reqSkill": "medical", "reqAmount": 5,
           "effects": {
             "worksLeft": -1,
-            "health": [-6,-5],
+            "health": [-10,-7],
             "pain": [8,12]
           }
         },
@@ -301,7 +306,7 @@
           "needsAssignment": false,
           "effects": {
             "worksLeft": -1,
-            "health": [-10,-9],
+            "health": [-16,-12],
             "pain": [13,18]
           }
         }
@@ -310,25 +315,15 @@
     {
       "targeted": true,
       "title": "STARTGOLDGrievous Rod Impalement",
-      "description": "        A rod launcher has been mishandled or malfunctioned, resulting in SPECIMEN being impaled with a titanium rod.NEWLINE        The rod struck a vital organ and embedded itself into the specimen's torso. It must be removed and the damage tended immediately, as there is a strong possibility the specimen may expire if not stabilized by an expert.NEWLINE        A highly medically-skilled specimen may be assigned to stabilize SPECIMEN, which will somewhat lower the damage it sustains. A specimen that is less medically skilled may also be assigned to stabilize it, but the damage to it will be much greater.NEWLINE        If a medically skilled specimen is not employed, SPECIMEN is nearly guarenteed to die.",
+      "description": "        SPECIMEN has entered an area of the facility in which it is not allowed, resulting in its impalement with a titanium rod.NEWLINE        The rod struck a vital organ and embedded itself into the specimen's torso. It must be removed and the damage tended immediately, as there is a strong possibility the specimen may expire if not stabilized by an expert.NEWLINE        A highly medically-skilled specimen may be assigned to stabilize SPECIMEN, which will somewhat lower the damage it sustains. A specimen that is less medically skilled may also be assigned to stabilize it, but the damage to it will be much greater.NEWLINE        If a medically skilled specimen is not employed, SPECIMEN is nearly guarenteed to die.",
       "options": [
-        {
-          "title": "Assign a designated Corpsman to tend to SPECIMEN",
-          "needsAssignment": true,
-          "reqClasses": ["Corpsman"],
-          "effects": {
-            "worksLeft": -1,
-            "health": [-8,-6],
-            "pain": [6,10]
-          }
-        },
         {
           "title": "Assign a talented specimen to tend to SPECIMEN",
           "needsAssignment": true,
-          "reqSkill": "medical", "reqAmount": 8,
+          "reqSkill": "medical", "reqAmount": 9,
           "effects": {
             "worksLeft": -1,
-            "health": [-12,-10],
+            "health": [-15,-12],
             "pain": [8,12]
           }
         },
@@ -347,7 +342,7 @@
           "needsAssignment": false,
           "effects": {
             "worksLeft": -1,
-            "health": [-30,-24],
+            "health": [-26,-20],
             "pain": [20,24]
           }
         }
@@ -1195,7 +1190,7 @@
     {
       "targeted": true,
       "title": "STARTGOLDSocial Fight",
-      "description": "        SPECIMEN is showing outwardly hostile and aggressive behavior towards another specimen following a failed social interaction. It must be prevented from causing harm to the victim.NEWLINE        The specimen can be stopped via stimulation of its brain's pain centre for a period of time, but this may cause degradation of psychic ability and is therefore a last resort. NEWLINE        Another sufficiently authoritative specimen may be assigned to stop its behavior via coercion. Another specimen can also be assigned to restrain it by physical force, which may result in negligible physical harm to SPECIMEN.",
+      "description": "        SPECIMEN is showing outwardly hostile and aggressive behavior towards another specimen following a failed social interaction. It must be prevented from causing harm to the victim.NEWLINE        The specimen can be stopped by allowing other specimens to influence the pain centre of its brain psychically, but this takes more time and is therefore a last resort. NEWLINE        Another sufficiently authoritative specimen may be assigned to stop its behavior via coercion. Another specimen can also be assigned to restrain it by physical force, which may result in negligible physical harm to SPECIMEN.",
       "options": [
         {
           "title": "Assign a specimen to pacify SPECIMEN",
@@ -1215,11 +1210,10 @@
           }
         },
         {
-          "title": "Neural shock SPECIMEN",
+          "title": "No action",
           "needsAssignment": false,
           "effects": {
             "pain": [49,51],
-            "psychic": -1,
             "worksLeft": -1
           }
         }
@@ -1474,6 +1468,22 @@
           "title": "Ok",
           "needsAssignment": false,
           "effects": {}
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "targeted": true,
+      "title": "ENDCOLORSTARTHLGOLDGreater Rage Victim",
+      "description": "         SPECIMEN was killed by an enraged peer.",
+      "options": [
+        {
+          "title": "Ok",
+          "needsAssignment": false,
+          "effects": {
+            "health": [-52,-51]
+          }
         }
       ]
     }
